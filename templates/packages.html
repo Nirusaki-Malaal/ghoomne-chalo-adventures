@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Ghoomne Chalo | All Packages</title>
+  <meta name="description" content="Explore our extensive inventory of curated travel packages. From zero-trace high altitude treks to peaceful valley homestays in remote villages.">
+  <meta name="keywords" content="travel packages, mountain trekking, weekend escapes, himalaya travel, sustainable tourism, valley stays, curated trips">
+  <meta name="author" content="Ghoomne Chalo Adventures">
+  <meta name="robots" content="index, follow">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="color-scheme" content="dark light">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/statics/assets/logo.png">
+  
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:title" content="Ghoomne Chalo Adventures - Explore Our Curated Trips">
+  <meta property="og:description" content="Explore our extensive inventory of curated travel packages. From zero-trace high altitude treks to peaceful valley homestays in remote villages.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ghoomnechalo.com/packages">
+  <meta property="og:image" content="https://ghoomnechalo.com/statics/images/card-image.jpg">
+  <meta property="og:site_name" content="Ghoomne Chalo Adventures">
+  
+  <!-- Twitter Cards -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Ghoomne Chalo Adventures - All Packages">
+  <meta name="twitter:description" content="Explore our extensive inventory of curated travel packages.">
+  <meta name="twitter:image" content="https://ghoomnechalo.com/statics/images/card-image.jpg">
+  
+  <link rel="canonical" href="https://ghoomnechalo.com/packages">
+  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/style.css'>
+  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/packages.css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">GHOOMNE CHALO ADVENTURES</div>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/">HOME</a></li>
+      <li><a href="/packages">PACKAGES</a></li>
+      <li><a href="/#founder">FOUNDER</a></li>
+      <li><a href="/#contact">CONTACT</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme">
+        <span class="theme-toggle__sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="theme-toggle__moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M19.2 14.7A8 8 0 1 1 9.3 4.8a6.4 6.4 0 0 0 9.9 9.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+      <a href="/packages" id="button-1" class="action-button">PACKAGES →</a>
+    </div>
+  </nav>
+
+  <main class="page-shell packages-page-main">
+
+    <!-- MAIN CONTENT -->
+    <div class="packages-container">
+      <!-- Editorial Header inspired by inventory_sample.html -->
+      <section class="packages-selection-header">
+          <p class="packages-selection-kicker">The Selection</p>
+          <h1 class="packages-selection-title">CURATED<br/>EXPEDITIONS</h1>
+      </section>
+
+      <!-- 2 column grid exactly like inventory_sample.html layout inspiration -->
+      <div class="packages-grid-large">
+        
+        {% for pkg in packages %}
+        <article class="package-card package-card--{{ pkg.package_id }}" data-parallax="0" data-package-id="{{ pkg.package_id }}">
+          <div class="package-card__glow"></div>
+          <div class="package-card__inner">
+            <div class="package-card__media">
+              <span class="package-badge">{{ pkg.badge }}</span>
+              <img src="{{ pkg.card_image }}" alt="{{ pkg.title }} visual" loading="lazy">
+            </div>
+            <div class="package-card__content">
+              <div class="package-card__topline">
+                <h3 class="package-title">{{ pkg.title }}</h3>
+                <span class="package-price">{{ pkg.price }}<span class="package-gst">+ 5% GST</span></span>
+              </div>
+              <button type="button" class="package-button" data-package-trigger="{{ pkg.package_id }}">Show Details</button>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+
+      </div>
+    </div>
+    
+    <div class="package-modal" id="package-modal" aria-hidden="true">
+      <div class="package-modal__backdrop" data-package-close></div>
+      <div class="package-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="package-modal-title">
+        <button type="button" class="package-modal__close" data-package-close aria-label="Close package details">×</button>
+        <div class="package-modal__media">
+          <img src="" alt="" id="package-modal-image">
+        </div>
+        <div class="package-modal__content">
+          <div class="package-modal__scroll">
+            <div class="package-modal__header">
+              <p class="package-modal__eyebrow" id="package-modal-eyebrow">Package</p>
+              <h3 class="package-modal__title" id="package-modal-title">Package Title</h3>
+              <p class="package-modal__summary" id="package-modal-summary"></p>
+            </div>
+            <div class="package-modal__facts" id="package-modal-facts"></div>
+            <div class="package-modal__tabs" role="tablist" aria-label="Package detail tabs">
+              <button type="button" class="package-modal__tab is-active" data-package-tab="flow" role="tab" aria-selected="true">Daywise Plan</button>
+              <button type="button" class="package-modal__tab" data-package-tab="features" role="tab" aria-selected="false">Features</button>
+              <button type="button" class="package-modal__tab" data-package-tab="carry" role="tab" aria-selected="false">Things To Carry</button>
+              <button type="button" class="package-modal__tab" data-package-tab="highlights" role="tab" aria-selected="false">Highlights</button>
+            </div>
+            <div class="package-modal__panels">
+              <section class="package-modal__panel is-active" data-package-panel="flow">
+                <div class="package-modal__flowchart" id="package-modal-flow"></div>
+              </section>
+              <section class="package-modal__panel" data-package-panel="features">
+                <div class="package-modal__grid package-modal__grid--features">
+                  <section class="package-modal__section">
+                    <h4>Inclusions</h4>
+                    <ul id="package-modal-inclusions"></ul>
+                  </section>
+                  <section class="package-modal__section">
+                    <h4>Exclusions</h4>
+                    <ul id="package-modal-exclusions"></ul>
+                  </section>
+                </div>
+              </section>
+              <section class="package-modal__panel" data-package-panel="carry">
+                <section class="package-modal__section">
+                  <h4>Things To Carry</h4>
+                  <ul id="package-modal-carry"></ul>
+                </section>
+              </section>
+              <section class="package-modal__panel" data-package-panel="highlights">
+                <section class="package-modal__section">
+                  <h4>Trip Highlights</h4>
+                  <ul id="package-modal-highlights"></ul>
+                </section>
+              </section>
+            </div>
+          </div>
+          <div class="package-modal__footer">
+            <a href="#" class="package-modal__book" id="package-modal-book" target="_blank" rel="noopener noreferrer">Book On WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  
+  <script src='/statics/js/packages.js'></script>
+</body>
+</html>

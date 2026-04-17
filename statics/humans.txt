@@ -1,0 +1,11 @@
+/* TEAM */
+  Developer: Nirusaki
+  Role: Lead Developer & Designer
+  Site: Ghoomne Chalo Adventures
+
+/* SITE */
+  Last update: 2026/04/18
+  Language: English
+  Doctype: HTML5
+  IDE: Visual Studio Code
+  Tech Stack: Python, FastAPI, MongoDB, HTML, Vanilla CSS, JavaScript, Three.js

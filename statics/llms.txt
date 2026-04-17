@@ -1,0 +1,24 @@
+# Ghoomne Chalo Adventures
+
+> Curated Trips For Slow Mornings And Long Mountain Roads
+
+Welcome to the LLM-friendly documentation for Ghoomne Chalo Adventures. We are an independent, highly curated travel agency offering breathtaking altitude escapes, peaceful valley stays, and deeply authentic local experiences.
+
+## Company Information
+- **Name**: Ghoomne Chalo Adventures
+- **Developer/Designer**: Nirusaki
+- **Tagline**: Curated Trips For Slow Mornings And Long Mountain Roads
+- **Target Audience**: Travelers seeking sustainable, mindful, and high-altitude mountain escapes.
+
+## Core Packages
+We curate unique travel packages dynamically. Our packages are frequently updated to ensure the best seasonal experiences. Common packages include high altitude trekkings and meditative homestays hidden far away from tourist traps.
+
+## Values
+We strongly emphasize:
+1. **Sustainability**: Zero-trace trekking and eco-friendly stays.
+2. **Community**: Partnering directly with local businesses and homestays.
+3. **Experience**: Crafting itineraries that favor peaceful exploration over rushed checkpoints.
+
+## Important Links
+- [Homepage](https://ghoomnechalo.com/)
+- [Available Packages](https://ghoomnechalo.com/packages)

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Ghoomne Chalo | Admin Secure Login</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="color-scheme" content="dark light">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/statics/assets/logo.png">
+  
+  <!-- Content Formatting for Answer Engines (GEO/AEO) -->
+  <meta name="format-detection" content="telephone=no">
+  <meta name="description" content="Secure administrative gateway for Ghoomne Chalo operators. Unauthorized access is strictly logged and prohibited.">
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:title" content="Admin Security Gateway | Ghoomne Chalo">
+  <meta property="og:description" content="Secure administrative gateway. Unauthorized access is strictly prohibited.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ghoomnechalo.com/statics/images/secure-card.jpg">
+  <meta property="og:site_name" content="Ghoomne Chalo Adventures">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/style.css'>
+  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/admin.css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    .login-container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      background: radial-gradient(circle at center, rgba(16, 32, 64, 0.9), var(--page-bg));
+    }
+    .login-card {
+      width: 100%;
+      max-width: 450px;
+      padding: 3rem 2rem;
+      margin-top: -5vh;
+    }
+    .login-logo {
+      text-align: center;
+      margin-bottom: 2rem;
+      font-weight: 800;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+    }
+    .error-msg {
+      background: rgba(255, 51, 51, 0.1);
+      color: #ff6b6b;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 51, 51, 0.3);
+      margin-bottom: 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .password-wrapper {
+      position: relative;
+    }
+    .password-toggle {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: rgba(255,255,255,0.4);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s ease;
+      padding: 4px;
+      z-index: 10;
+    }
+    .password-toggle:hover {
+      color: var(--primary);
+    }
+    .password-toggle svg {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="login-container">
+    <div class="glass-panel login-card">
+      <div class="login-logo">
+        <span style="color: white;">GHOOMNE CHALO</span><br>
+        <span style="color: #74a0ff; font-size: 1rem; font-weight: 500;">ADMIN SECURE LOGIN</span>
+      </div>
+      
+      {% if error %}
+      <div class="error-msg">
+        {{ error }}
+      </div>
+      {% endif %}
+
+      <form action="/login" method="post">
+        <div class="admin-form-group">
+          <label class="admin-label" for="username">Username</label>
+          <input type="text" id="username" name="username" required autocomplete="username" placeholder="Enter admin username">
+        </div>
+        
+        <div class="admin-form-group" style="margin-bottom: 2rem;">
+          <label class="admin-label" for="password">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="password" name="password" required autocomplete="current-password" placeholder="Enter admin password" style="padding-right: 45px;">
+            <button type="button" class="password-toggle" id="password-toggle" aria-label="Toggle password visibility">
+              <svg id="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+        
+        <button type="submit" class="admin-btn" style="width: 100%; font-size: 1.1rem; padding: 1rem;">Authenticate</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const passwordInput = document.getElementById('password');
+    const toggleButton = document.getElementById('password-toggle');
+    const eyeIcon = document.getElementById('eye-icon');
+
+    toggleButton.addEventListener('click', () => {
+      const isPassword = passwordInput.getAttribute('type') === 'password';
+      passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
+      
+      if (isPassword) {
+        // Switch to "eye-off" icon
+        eyeIcon.innerHTML = `
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+        `;
+      } else {
+        // Switch back to "eye" icon
+        eyeIcon.innerHTML = `
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        `;
+      }
+    });
+  </script>
+</body>
+</html>

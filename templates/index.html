@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Ghoomne Chalo Adventures - Curated Trips & Valley Stays</title>
+  <meta name="description" content="Discover breathtaking weekend escapes, peaceful valley homestays, and carefully curated high-altitude itineraries built around local stays and trail time.">
+  <meta name="keywords" content="travel agency, curated trips, mountain trekking, weekend escapes, himalaya travel, sustainable tourism, valley stays">
+  <meta name="author" content="Ghoomne Chalo Adventures">
+  <meta name="robots" content="index, follow">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="color-scheme" content="dark light">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/statics/assets/logo.png">
+  
+  <!-- Content Formatting for Answer Engines (GEO/AEO) -->
+  <meta name="format-detection" content="telephone=no">
+  <link rel="author" href="/humans.txt">
+  <link rel="canonical" href="https://ghoomnechalo.com/">
+  
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:title" content="Ghoomne Chalo Adventures - Curated Trips & Valley Stays">
+  <meta property="og:description" content="Discover breathtaking weekend escapes, peaceful valley homestays, and carefully curated high-altitude itineraries built around local stays and trail time.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ghoomnechalo.com/">
+  <meta property="og:image" content="https://ghoomnechalo.com/statics/images/card-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  
+  <!-- Structured Data JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TravelAgency",
+    "name": "Ghoomne Chalo Adventures",
+    "url": "https://ghoomnechalo.com/",
+    "logo": "https://ghoomnechalo.com/statics/images/card-image.jpg",
+    "description": "Curated Trips For Slow Mornings And Long Mountain Roads. Weekend escapes, peaceful valley stays, and high-altitude itineraries.",
+    "founder": {
+      "@type": "Person",
+      "name": "Ghoomne Chalo Founder"
+    },
+    "knowsAbout": ["Mountain Trekking", "Sustainable Tourism", "Local Homestays", "Adventure Travel"]
+  }
+  </script>
+
+  <link rel='stylesheet' type='text/css' media='screen' href='./statics/css/style.css'>
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="logo">GHOOMNE CHALO ADVENTURES</div>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#packages">PACKAGES</a></li>
+      <li><a href="#founder">FOUNDER</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme">
+        <span class="theme-toggle__sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="theme-toggle__moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M19.2 14.7A8 8 0 1 1 9.3 4.8a6.4 6.4 0 0 0 9.9 9.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+      <a href="/packages" id="button-1" class="action-button">PACKAGES →</a>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <section class="hero-panel" id="home">
+      <div class="container">
+        <img src="./statics/assets/horizontal.jpg" alt="Night mountain landscape background" draggable="false" class="base">
+        <div class="hero-sun" aria-hidden="true">
+          <span class="hero-sun__core"></span>
+        </div>
+        <div class="space-layer" aria-hidden="true"></div>
+        <img src="./statics/assets/foreground.png" alt="Mountain foreground" draggable="false" class="foreground-layer">
+
+        <div class="hero-copy">
+          <p class="hero-eyebrow">Curated journeys through Himachal and Uttarakhand</p>
+          <h1 class="hero-text">Ghoomne Chalo Adventures</h1>
+          <p class="hero-subtext">Scroll into the range and drop straight into our photo journal.</p>
+        </div>
+
+        <div class="scroll-cue">SCROLL TO ENTER THE GALLERY</div>
+      </div>
+    </section>
+
+    <section class="packages-section" id="packages">
+      <div class="packages-intro">
+        <p class="section-kicker">PACKAGES</p>
+        <h2 class="section-title">Curated Trips For Slow Mornings And Long Mountain Roads</h2>
+        <p class="section-copy">
+          Weekend escapes, peaceful valley stays, and high-altitude itineraries built around local stays, good food, and trail time.
+        </p>
+      </div>
+
+      <div class="packages-grid">
+        {% for pkg in packages %}
+        <article class="package-card package-card--{{ pkg.package_id }}" data-parallax="0.12" data-package-id="{{ pkg.package_id }}">
+          <div class="package-card__glow"></div>
+          <div class="package-card__inner">
+            <div class="package-card__media">
+              <span class="package-badge">{{ pkg.badge }}</span>
+              <img src="{{ pkg.card_image }}" alt="{{ pkg.title }} package visual" loading="lazy">
+            </div>
+            <div class="package-card__content">
+              <div class="package-card__topline">
+                <h3 class="package-title">{{ pkg.title }}</h3>
+                <span class="package-price">{{ pkg.price }}<span class="package-gst">+ 5% GST</span></span>
+              </div>
+              <button type="button" class="package-button" data-package-trigger="{{ pkg.package_id }}">Show Details</button>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </section>
+
+    <div class="package-modal" id="package-modal" aria-hidden="true">
+      <div class="package-modal__backdrop" data-package-close></div>
+      <div class="package-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="package-modal-title">
+        <button type="button" class="package-modal__close" data-package-close aria-label="Close package details">×</button>
+        <div class="package-modal__media">
+          <img src="" alt="" id="package-modal-image" style="background:#222;">
+        </div>
+        <div class="package-modal__content">
+          <div class="package-modal__scroll">
+            <div class="package-modal__header">
+              <p class="package-modal__eyebrow" id="package-modal-eyebrow">Package</p>
+              <h3 class="package-modal__title" id="package-modal-title">Package Title</h3>
+              <p class="package-modal__summary" id="package-modal-summary"></p>
+            </div>
+            <div class="package-modal__facts" id="package-modal-facts"></div>
+            <div class="package-modal__tabs" role="tablist" aria-label="Package detail tabs">
+              <button type="button" class="package-modal__tab is-active" data-package-tab="flow" role="tab" aria-selected="true">Daywise Plan</button>
+              <button type="button" class="package-modal__tab" data-package-tab="features" role="tab" aria-selected="false">Features</button>
+              <button type="button" class="package-modal__tab" data-package-tab="carry" role="tab" aria-selected="false">Things To Carry</button>
+              <button type="button" class="package-modal__tab" data-package-tab="highlights" role="tab" aria-selected="false">Highlights</button>
+            </div>
+            <div class="package-modal__panels">
+              <section class="package-modal__panel is-active" data-package-panel="flow">
+                <div class="package-modal__flowchart" id="package-modal-flow"></div>
+              </section>
+              <section class="package-modal__panel" data-package-panel="features">
+                <div class="package-modal__grid package-modal__grid--features">
+                  <section class="package-modal__section">
+                    <h4>Inclusions</h4>
+                    <ul id="package-modal-inclusions"></ul>
+                  </section>
+                  <section class="package-modal__section">
+                    <h4>Exclusions</h4>
+                    <ul id="package-modal-exclusions"></ul>
+                  </section>
+                </div>
+              </section>
+              <section class="package-modal__panel" data-package-panel="carry">
+                <section class="package-modal__section">
+                  <h4>Things To Carry</h4>
+                  <ul id="package-modal-carry"></ul>
+                </section>
+              </section>
+              <section class="package-modal__panel" data-package-panel="highlights">
+                <section class="package-modal__section">
+                  <h4>Trip Highlights</h4>
+                  <ul id="package-modal-highlights"></ul>
+                </section>
+              </section>
+            </div>
+          </div>
+          <div class="package-modal__footer">
+            <a
+              href="https://wa.me/919536309897?text=I%20want%20to%20book%20this"
+              class="package-modal__book"
+              id="package-modal-book"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book On WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="founder-section" id="founder">
+      <div class="founder-container">
+        <div class="founder-image-col">
+          <div class="founder-image-wrapper">
+            <img class="founder-image" src="./statics/assets/founder.png" alt="Shubham Bisht in the mountains" loading="lazy">
+          </div>
+          <div class="founder-badge">
+            <h4>Shubham Bisht</h4>
+            <p>Founder</p>
+          </div>
+        </div>
+        <div class="founder-content-col">
+          <p class="founder-kicker">THE VISIONARY</p>
+          <h2 class="founder-title-main">Crafting Journeys, Not Just Travelling.</h2>
+          
+          <div class="founder-text">
+            <p>Born in a small village called Sahiya near Chakrata in Uttarakhand.
+
+With professional mountaineering training from NIM, Uttarkashi and years of travelling experience including treks and expeditions like Bali Pass, Mt. Kanamo & Kang Yatse II along with numerous road journeys and  camping experiences across landscapes of Uttarakhand, Himachal, Kashmir & Ladakh.</p>
+            
+            <p>My goal is to provide a seamless, safe gateway for those seeking to challenge their limits. At Ghoomne Chalo, we don't just show you the view; we help you find the summit within.</p>
+          </div>
+
+         
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews-section" id="reviews">
+      <div class="reviews-intro">
+        <p class="section-kicker">GOOGLE REVIEWS</p>
+        <h2 class="section-title">Stories From The Road</h2>
+        <p class="section-copy">
+          Real feedback from travellers who explored Harsil, Chakrata, and beyond with Ghoomne Chalo Adventures.
+        </p>
+      </div>
+      <div class="reviews-grid">
+        <article class="review-card">
+          <div class="review-card__topline">
+            <div>
+              <h3>Kunal Mohan</h3>
+              <p class="review-card__meta">2 months ago</p>
+            </div>
+            <a class="review-card__link" href="https://share.google/3LCX9qcJIhDAFuYTp" target="_blank" rel="noopener noreferrer">Open Review</a>
+          </div>
+          <p class="review-card__stars" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
+          <p class="review-card__text">
+            "Had an amazing and memorable experience travelling with Shubham through Ghoomne Chalo Adventures. Even during peak winter in Uttarakhand, he made sure we reached Harsil safely, had the facilities we needed, and truly enjoyed the journey. I highly recommend him if you want to travel to Chakrata and Harsil Valley."
+          </p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__topline">
+            <div>
+              <h3>Yogmitra</h3>
+              <p class="review-card__meta">a month ago</p>
+            </div>
+            <a class="review-card__link" href="https://share.google/mctkF6spSPwLGlAAZ" target="_blank" rel="noopener noreferrer">Open Review</a>
+          </div>
+          <p class="review-card__stars" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
+          <p class="review-card__text">
+            "Second time travelling with Ghoomne Chalo Adventures and once again it was such a beautiful experience. The planning, management, and calm nature made the trip stress-free, safe, and comfortable. Exploring spots beyond the itinerary made the whole journey even more memorable."
+          </p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__topline">
+            <div>
+              <h3>Shivani Tyagi</h3>
+              <p class="review-card__meta">a week ago</p>
+            </div>
+            <a class="review-card__link" href="https://share.google/vkuzlwKZM9pO9ZVfG" target="_blank" rel="noopener noreferrer">Open Review</a>
+          </div>
+          <p class="review-card__stars" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
+          <p class="review-card__text">
+            "The Harshil trip was truly unforgettable. Everything was perfectly organized, the experience felt seamless, and our corporate outing was filled with breathtaking views, warmth, laughter, and wonderful team moments. It is a trip that will always hold a special place in our hearts."
+          </p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__topline">
+            <div>
+              <h3>Abhinay Reddy</h3>
+              <p class="review-card__meta">2 months ago</p>
+            </div>
+            <a class="review-card__link" href="https://share.google/Hp6Fq2OiL2T1Zc2E0" target="_blank" rel="noopener noreferrer">Open Review</a>
+          </div>
+          <p class="review-card__stars" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
+          <p class="review-card__text">
+            "It was my second trip with Ghoomne Chalo Adventures and it felt completely different from typical travel agencies. From solo travellers bonding like old friends to trekking in Deoban Forest and finding snow, everything felt personal, joyful, and worth every penny."
+          </p>
+        </article>
+
+        <article class="review-card">
+          <div class="review-card__topline">
+            <div>
+              <h3>nabam Seema</h3>
+              <p class="review-card__meta">a month ago</p>
+            </div>
+            <a class="review-card__link" href="https://share.google/c0cGCpjNMgUJ6HZTv" target="_blank" rel="noopener noreferrer">Open Review</a>
+          </div>
+          <p class="review-card__stars" aria-label="5 out of 5 stars"><span aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span></p>
+          <p class="review-card__text">
+            "Our 3 nights and 4 days in Harshil Valley felt life-changing. The trip was meaningful, responsible, and full of positivity. I even found the courage to face my fear of heights, met beautiful people who felt like family, and came back grateful for the growth and memories."
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="contact-intro">
+        <p class="section-kicker">GET IN TOUCH</p>
+        <h2 class="section-title">Start Your Journey</h2>
+      </div>
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:ghoomnechaloadventures@gmail.com">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 7.5 10.94 12.3a1.8 1.8 0 0 0 2.12 0L20 7.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" stroke="currentColor" stroke-width="1.8"/>
+            </svg>
+          </div>
+          <h3>Email Us</h3>
+          <p><span class="contact-text-full">ghoomnechaloadventures@gmail.com</span><span class="contact-text-mobile">Mail</span></p>
+        </a>
+        <a class="contact-card" href="tel:+919536309897">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M7.5 4.5c.6-.54 1.52-.53 2.1.03l1.42 1.37c.57.55.7 1.4.32 2.1l-.88 1.62a1.2 1.2 0 0 0 .16 1.37l2.39 2.39c.4.4 1 .47 1.5.17l1.42-.84c.7-.41 1.58-.3 2.17.28l1.43 1.43c.58.58.58 1.52 0 2.1l-.64.64c-.88.88-2.18 1.22-3.38.88-2.15-.61-4.57-2.2-6.7-4.33-2.13-2.13-3.72-4.55-4.33-6.7-.34-1.2 0-2.5.88-3.38l.54-.53Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>Call</h3>
+          <p><span class="contact-text-full">+91 95363 09897</span><span class="contact-text-mobile">Call</span></p>
+        </a>
+        <a class="contact-card" href="https://wa.me/919536309897?text=Hi%20Ghoomne%20Chalo%20Adventures" target="_blank" rel="noopener noreferrer">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M16.4 13.8c-1.84 1.7-4.86 1.64-6.63-.12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M8.8 14.16 7.5 19.5l3.83-1.16a7.5 7.5 0 0 0 3.61-.03c3.18-.83 5.56-3.66 5.56-7.01 0-4-3.58-7.3-8-7.3s-8 3.3-8 7.3c0 2.16 1.04 4.1 2.69 5.44" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M9.65 10.9h.01M14.35 10.9h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3>WhatsApp</h3>
+          <p><span class="contact-text-full">Chat On WhatsApp</span><span class="contact-text-mobile">WhatsApp</span></p>
+        </a>
+        <a class="contact-card" href="https://www.instagram.com/ghoomnechaloadventures/" target="_blank" rel="noopener noreferrer">
+          <div class="contact-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="4" width="16" height="16" rx="4.5" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="3.6" stroke="currentColor" stroke-width="1.8"/>
+              <circle cx="17.2" cy="6.8" r="1" fill="currentColor"/>
+            </svg>
+          </div>
+          <h3>Instagram</h3>
+          <p><span class="contact-text-full">@ghoomnechaloadventures</span><span class="contact-text-mobile">Instagram</span></p>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script type="module" src='./statics/js/script.js'></script>
+</body>
+
+</html>

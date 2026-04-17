@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+jinja2
+motor
+PyJWT
+python-dotenv
+python-multipart

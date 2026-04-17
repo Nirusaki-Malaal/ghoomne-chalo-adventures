@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Ghoomne Chalo | Error {{ error_code }}</title>
+  <meta name="robots" content="noindex, follow">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Looks like you've ventured off the mapped trail. Let's get you back to safety at Ghoomne Chalo basecamp.">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/statics/assets/logo.png">
+  
+  <!-- Open Graph & Twitter -->
+  <meta property="og:title" content="Oops! Map Lost - Ghoomne Chalo">
+  <meta property="og:description" content="Looks like you've ventured off the mapped trail. Let's get you back to safety at Ghoomne Chalo basecamp.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://ghoomnechalo.com/statics/images/error-card.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/style.css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    
+    .error-page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background: radial-gradient(circle at center, rgba(16, 32, 64, 0.4), var(--page-bg));
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .error-code {
+      font-size: clamp(6rem, 15vw, 12rem);
+      font-weight: 900;
+      line-height: 1;
+      margin: 0;
+      background: linear-gradient(135deg, #74a0ff, #fff, #74a0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: pulseGlow 4s infinite alternate;
+      z-index: 2;
+    }
+    
+    .error-title {
+      font-size: clamp(1.5rem, 4vw, 2.5rem);
+      font-weight: 700;
+      margin-top: -1rem;
+      margin-bottom: 1.5rem;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 1px;
+      z-index: 2;
+    }
+    
+    .error-message {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.7);
+      max-width: 500px;
+      margin-bottom: 3rem;
+      z-index: 2;
+    }
+    
+    .return-home-btn {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      text-decoration: none;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      border: 1px solid rgba(116, 160, 255, 0.3);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      z-index: 2;
+    }
+    
+    .return-home-btn:hover {
+      background: rgba(116, 160, 255, 0.2);
+      border-color: rgba(116, 160, 255, 0.6);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+    
+    @keyframes pulseGlow {
+      0% { text-shadow: 0 0 20px rgba(116, 160, 255, 0.1); }
+      100% { text-shadow: 0 0 40px rgba(116, 160, 255, 0.4); }
+    }
+    
+    /* Decorative Background Elements */
+    .bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: 1;
+      opacity: 0.15;
+    }
+  </style>
+</head>
+<body data-theme="dark">
+  <div class="error-page-wrapper">
+    <div class="bg-circle" style="top: -10%; left: -5%; width: min(400px, 80vw); height: min(400px, 80vw); background: #74a0ff;"></div>
+    <div class="bg-circle" style="bottom: -15%; right: -10%; width: min(500px, 90vw); height: min(500px, 90vw); background: #3b82f6;"></div>
+    
+    <h1 class="error-code">{{ error_code }}</h1>
+    <h2 class="error-title">
+      {% if error_code == 404 %}
+        LOST IN THE WILDERNESS
+      {% elif error_code == 401 or error_code == 403 %}
+        RESTRICTED TRAIL
+      {% else %}
+        SOMETHING WENT WRONG
+      {% endif %}
+    </h2>
+    <p class="error-message">
+      {{ error_message | default("It looks like you've ventured off the mapped trail. Let's get you back to safety.") }}
+    </p>
+    
+    <a href="/" class="return-home-btn">RETURN TO BASECAMP</a>
+  </div>
+</body>
+</html>

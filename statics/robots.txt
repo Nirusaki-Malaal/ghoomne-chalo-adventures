@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Allow: /packages
+Disallow: /admin
+Disallow: /login
+Disallow: /api/
+
+Sitemap: https://ghoomnechalo.com/sitemap.xml

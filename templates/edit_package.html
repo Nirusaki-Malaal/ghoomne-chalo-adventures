@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Ghoomne Chalo | Editor Console</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="description" content="Internal package editor system.">
+
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="/statics/assets/logo.png">
+
+  <!-- Open Graph & Social Cards -->
+  <meta property="og:title" content="Package Editor Console | Ghoomne Chalo">
+  <meta property="og:description" content="Internal package editor system. Use carefully to shape the traveler's experience.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Ghoomne Chalo Adventures">
+  <meta name="twitter:card" content="summary">
+  <meta name="color-scheme" content="dark light">
+  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/style.css'>
+  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/admin.css'>
+  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/edit.css'>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">GHOOMNE CHALO ADVENTURES</div>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/">HOME</a></li>
+      <li><a href="/packages">PACKAGES</a></li>
+      <li><a href="/admin" style="font-weight: bold; color: var(--primary);">ADMIN</a></li>
+      <li><a href="/logout" style="color: #ff6b6b;">LOGOUT</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme">
+        <span class="theme-toggle__sun" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
+            <path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="theme-toggle__moon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M19.2 14.7A8 8 0 1 1 9.3 4.8a6.4 6.4 0 0 0 9.9 9.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </span>
+      </button>
+      <a href="/packages" id="button-1" class="action-button">PACKAGES →</a>
+    </div>
+  </nav>
+
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+    <p>Processing Package...</p>
+  </div>
+
+  <main class="page-shell admin-page-main">
+    <div class="admin-header">
+      <p class="packages-selection-kicker">Management</p>
+      <h1 class="packages-selection-title">ADMIN PANEL</h1>
+      
+      </div>
+
+  <form method="post" action="/admin/edit/{{ pkg.package_id }}" class="edit-container" id="editPackageForm">
+      <div class="edit-header">
+        <h2>Edit Package: {{ pkg.title }}</h2>
+      </div>
+      
+      <div class="edit-form-group">
+        <label>ID</label>
+        <input type="text" name="package_id" required value="{{ pkg.package_id }}" placeholder="e.g., andaman_nicobar">
+      </div>
+      <div class="edit-form-group">
+        <label>Title</label>
+        <input type="text" name="title" required value="{{ pkg.title }}" placeholder="Andaman Nicobar">
+      </div>
+      <div class="edit-form-group">
+        <label>Price</label>
+        <input type="text" name="price" required value="{{ pkg.price }}" placeholder="e.g., ₹14999">
+      </div>
+      <div class="edit-form-group">
+        <label>Badge</label>
+        <input type="text" name="badge" required value="{{ pkg.badge }}" placeholder="e.g., Popular">
+      </div>
+      <div class="edit-form-group">
+        <label>Eyebrow</label>
+        <input type="text" name="eyebrow" required value="{{ pkg.eyebrow }}" placeholder="Tropical Island">
+      </div>
+      <div class="edit-form-group edit-image-preview">
+        <label>Current Image</label>
+        <img src="{{ pkg.card_image[1:] if pkg.card_image.startswith('./') else pkg.card_image }}" id="currentImagePreview" onerror="this.style.display='none'">
+        <p style="margin-bottom:1rem;font-size:0.85rem;color:var(--text-muted);">Upload a new file to replace the current image. Base64 is generated automatically.</p>
+        <input type="file" id="imageUpload" accept="image/*">
+        <input type="hidden" name="card_image" id="base64Output">
+      </div>
+      <div class="edit-form-group">
+        <label>Summary</label>
+        <textarea name="summary" rows="3" required placeholder="A beautiful tropical island...">{{ pkg.summary }}</textarea>
+      </div>
+      
+      <!-- New detailed fields -->
+      <div class="edit-form-group">
+        <label>Itinerary (Day-wise Plan)</label>
+        <textarea name="itinerary" rows="6" placeholder="Day 1: Arrival
+- Check into hotel
+- Rest
+Day 2: Sightseeing
+- Visit museum
+- Boat ride">{{ pkg.itinerary_text }}</textarea>
+        <small style="opacity:0.7">Format: 'Day X: Title' on one line, followed by bullet points starting with '-'</small>
+      </div>
+      <div class="edit-form-group">
+        <label>Inclusions (One per line)</label>
+        <textarea name="inclusions" rows="3" placeholder="- 3 Nights Stay
+- All Meals">{{ pkg.inclusions_text }}</textarea>
+      </div>
+      <div class="edit-form-group">
+        <label>Exclusions (One per line)</label>
+        <textarea name="exclusions" rows="3" placeholder="- Flights
+- Personal Expenses">{{ pkg.exclusions_text }}</textarea>
+      </div>
+      <div class="edit-form-group">
+        <label>Things To Carry (One per line)</label>
+        <textarea name="carry" rows="3" placeholder="- Sunglasses
+- Light Jacket">{{ pkg.carry_text }}</textarea>
+      </div>
+      <div class="edit-form-group">
+        <label>Highlights (One per line)</label>
+        <textarea name="highlights" rows="3" placeholder="- Beach walk
+- Local cuisine">{{ pkg.highlights_text }}</textarea>
+      </div>
+      <div class="edit-form-group">
+        <label>Tags/Facts (Comma separated)</label>
+        <input type="text" name="facts" value="{{ pkg.facts_text }}" placeholder="e.g. 5 Days, Adventure, Family">
+      </div>
+
+      <div class="edit-actions">
+        <a href="/admin" class="btn-cancel">Cancel</a>
+        <button type="submit" class="btn-update">Update Package</button>
+      </div>
+      </form>
+  </main>
+  <script src="/statics/js/admin.js"></script>
+  <script src="/statics/js/edit.js"></script>
+</body>
+</html>
