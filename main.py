@@ -5,7 +5,13 @@ from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.middleware.gzip import GZipMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
+import mimetypes
 from dotenv import load_dotenv
+
+# Securely inject missing mimetypes for Vercel's serverless environment
+mimetypes.add_type("application/javascript", ".js")
+mimetypes.add_type("text/css", ".css")
+mimetypes.add_type("image/svg+xml", ".svg")
 
 # Load secret environment variables
 load_dotenv()
