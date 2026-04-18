@@ -901,6 +901,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  let lastScrollY = window.scrollY;
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+    const threshold = typeof getHeroScrollConfig === "function" && getHeroScrollConfig() ? getHeroScrollConfig().pinDistance : window.innerHeight;
+    
+    if (currentScrollY > threshold) {
+      if (currentScrollY > lastScrollY && (!navbar || !navbar.classList.contains("is-open"))) {
+        navbar?.classList.add("navbar--hidden");
+      } else {
+        navbar?.classList.remove("navbar--hidden");
+      }
+    } else {
+      navbar?.classList.remove("navbar--hidden");
+    }
+    lastScrollY = currentScrollY;
+  });
+
   const renderPackageList = (target, items) => {
     if (!target) {
       return;

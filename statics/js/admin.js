@@ -51,6 +51,21 @@ function initAdmin() {
 
     themeToggle.addEventListener('click', toggleTheme);
   }
+
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > 100) {
+      if (currentScrollY > lastScrollY && (!navbar || !navbar.classList.contains("is-open"))) {
+        navbar?.classList.add("navbar--hidden");
+      } else {
+        navbar?.classList.remove("navbar--hidden");
+      }
+    } else {
+      navbar?.classList.remove("navbar--hidden");
+    }
+    lastScrollY = currentScrollY;
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
