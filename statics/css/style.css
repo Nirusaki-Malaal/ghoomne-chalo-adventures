@@ -397,7 +397,7 @@ img {
 
 .hero-copy {
   position: absolute;
-  top: 53%;
+  top: 45%;
   left: 50%;
   z-index: 5;
   width: min(92vw, 1040px);
