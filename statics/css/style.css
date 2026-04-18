@@ -208,6 +208,8 @@ img {
 .theme-toggle__sun,
 .theme-toggle__moon {
   position: absolute;
+  top: calc(50% - 11px);
+  left: calc(50% - 11px);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2124,7 +2126,7 @@ body[data-theme="light"] .package-button:hover {
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 1024px) {
   .navbar {
     justify-content: space-between;
     align-items: center;
@@ -2230,7 +2232,9 @@ body[data-theme="light"] .package-button:hover {
     border-radius: 0;
     background: transparent;
   }
+}
 
+@media (max-width: 640px) {
   .hero-eyebrow {
     margin-bottom: 12px;
     letter-spacing: 0.16em;
