@@ -48,7 +48,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 100svh;
+  min-height: 100dvh;
   margin-top: calc(-1 * var(--section-bridge));
   padding: calc(140px + var(--section-bridge)) clamp(20px, 4vw, 56px) 160px;
   background:

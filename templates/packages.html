@@ -39,6 +39,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+  <script>
+    (function() {
+      const theme = localStorage.getItem('ghoomnechalo-theme');
+      if (theme === 'light' || (!theme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.body.dataset.theme = 'light';
+      } else {
+        document.body.dataset.theme = 'dark';
+      }
+    })();
+  </script>
   <nav class="navbar">
     <div class="logo">GHOOMNE CHALO ADVENTURES</div>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">

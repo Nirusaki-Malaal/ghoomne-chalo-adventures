@@ -255,7 +255,7 @@ img {
 
 .hero-panel {
   position: relative;
-  min-height: 100svh;
+  min-height: 100dvh;
   z-index: 2;
 }
 
@@ -275,8 +275,8 @@ img {
 .container {
   position: relative;
   width: 100%;
-  height: 100svh;
-  min-height: 100svh;
+  height: 100dvh;
+  min-height: 100dvh;
   overflow: hidden;
   isolation: isolate;
   background:
@@ -1444,7 +1444,7 @@ body[data-theme="light"] .package-button:hover {
   position: relative;
   display: flex;
   align-items: center;
-  min-height: 100svh;
+  min-height: 100dvh;
   margin-top: calc(-1 * var(--section-bridge));
   padding: calc(140px + var(--section-bridge)) clamp(20px, 4vw, 56px) 160px;
   background:
@@ -2127,7 +2127,7 @@ body[data-theme="light"] .package-button:hover {
 @media (max-width: 640px) {
   .navbar {
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     gap: 12px;
     min-height: 72px;
     height: auto;
@@ -2135,6 +2135,15 @@ body[data-theme="light"] .package-button:hover {
     flex-wrap: wrap;
     mix-blend-mode: normal;
     isolation: isolate;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    line-height: 46px;
+    max-width: calc(100% - 60px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .nav-toggle {

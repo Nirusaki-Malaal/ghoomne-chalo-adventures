@@ -111,6 +111,16 @@
   </style>
 </head>
 <body data-theme="dark">
+  <script>
+    (function() {
+      const theme = localStorage.getItem('ghoomnechalo-theme');
+      if (theme === 'light' || (!theme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.body.dataset.theme = 'light';
+      } else {
+        document.body.dataset.theme = 'dark';
+      }
+    })();
+  </script>
   <div class="error-page-wrapper">
     <div class="bg-circle" style="top: -10%; left: -5%; width: min(400px, 80vw); height: min(400px, 80vw); background: #74a0ff;"></div>
     <div class="bg-circle" style="bottom: -15%; right: -10%; width: min(500px, 90vw); height: min(500px, 90vw); background: #3b82f6;"></div>

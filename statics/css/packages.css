@@ -36,7 +36,7 @@
   background:
     radial-gradient(circle at 50% 12%, rgba(73, 113, 179, 0.25), transparent 30%),
     linear-gradient(to bottom, #061020 0%, #071427 45%, #081a30 100%);
-  min-height: 100svh;
+  min-height: 100dvh;
 }
 
 body[data-theme="light"] .packages-page-main {

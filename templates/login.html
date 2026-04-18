@@ -90,6 +90,16 @@
   </style>
 </head>
 <body data-theme="dark">
+  <script>
+    (function() {
+      const theme = localStorage.getItem('ghoomnechalo-theme');
+      if (theme === 'light' || (!theme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
+        document.body.dataset.theme = 'light';
+      } else {
+        document.body.dataset.theme = 'dark';
+      }
+    })();
+  </script>
   <div class="login-container">
     <div class="glass-panel login-card">
       <div class="login-logo">
