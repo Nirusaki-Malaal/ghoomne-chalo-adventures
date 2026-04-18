@@ -1,15 +1,16 @@
-import * as THREE from "three";
+// Three.js is lazy-loaded below when needed
+let THREE = null;
 
 const WHATSAPP_NUMBER = "919536309897";
 const THEME_STORAGE_KEY = "ghoomnechalo-theme";
 const HERO_ART = {
   dark: {
-    desktop: "./statics/assets/horizontal.jpg",
-    mobile: "./statics/assets/vertical_foreground.png",
+    desktop: "./statics/assets/horizontal.webp",
+    mobile: "./statics/assets/vertical_foreground.webp",
   },
   light: {
-    desktop: "./statics/assets/horizontal_light.png",
-    mobile: "./statics/assets/vertical_foreground_light.png",
+    desktop: "./statics/assets/horizontal_light.webp",
+    mobile: "./statics/assets/vertical_foreground_light.webp",
   },
 };
 
@@ -528,7 +529,7 @@ function setupSpaceScene(spaceLayer, prefersReducedMotion) {
   };
 }
 
-window.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const gsapInstance = window.gsap;
   const ScrollTriggerPlugin = window.ScrollTrigger;
 
@@ -1027,8 +1028,31 @@ window.addEventListener("load", () => {
     }
   });
 
-  spaceScene = setupSpaceScene(spaceLayer, prefersReducedMotion);
-  updateSpaceTheme();
+  // Lazy-load Three.js - only when space-layer is visible
+  const initSpaceScene = async () => {
+    if (THREE) return; // already loaded
+    try {
+      THREE = await import("three");
+      spaceScene = setupSpaceScene(spaceLayer, prefersReducedMotion);
+      updateSpaceTheme();
+    } catch (err) {
+      console.warn("Three.js failed to load, skipping space scene", err);
+    }
+  };
+
+  // Use IntersectionObserver to load Three.js only when hero is in view
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        initSpaceScene();
+        observer.disconnect();
+      }
+    }, { threshold: 0.1 });
+    observer.observe(spaceLayer);
+  } else {
+    // Fallback: load after a short delay
+    setTimeout(initSpaceScene, 1500);
+  }
   syncResponsiveHeroState();
   ScrollTriggerPlugin.addEventListener("refreshInit", syncResponsiveHeroState);
 

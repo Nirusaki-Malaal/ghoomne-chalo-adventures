@@ -1,21 +1,25 @@
 @font-face {
   font-family: "Nistha";
   src: url("../fonts/nistha.otf") format("opentype");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Nofex";
   src: url("../fonts/nofex.otf") format("opentype");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Gondens";
   src: url("../fonts/gondens.otf") format("opentype");
+  font-display: swap;
 }
 
 @font-face {
   font-family: "Dehanna";
   src: url("../fonts/dehanna.otf") format("opentype");
+  font-display: swap;
 }
 
 :root {

@@ -27,7 +27,15 @@ app.add_middleware(GZipMiddleware, minimum_size=500)
 MONGO_URI = os.environ.get("MONGO_URI")
 if not MONGO_URI:
     raise ValueError("MONGO_URI not found in environment (.env)")
-client = AsyncIOMotorClient(MONGO_URI)
+client = AsyncIOMotorClient(
+    MONGO_URI,
+    maxPoolSize=5,
+    minPoolSize=0,
+    serverSelectionTimeoutMS=15000,
+    connectTimeoutMS=10000,
+    socketTimeoutMS=30000,
+    maxIdleTimeMS=45000,
+)
 db = client.ghoomne_chalo
 packages_collection = db.packages
 

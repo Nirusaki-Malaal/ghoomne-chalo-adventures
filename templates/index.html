@@ -14,7 +14,12 @@
   
   <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
-  <link rel="apple-touch-icon" href="/statics/assets/logo.png">
+  <link rel="apple-touch-icon" href="/statics/assets/logo.webp">
+  
+  <!-- Critical Resource Preloads (above-the-fold) -->
+  <link rel="preload" as="image" type="image/webp" href="./statics/assets/horizontal.webp" media="(min-width: 641px)">
+  <link rel="preload" as="image" type="image/webp" href="./statics/assets/vertical_foreground.webp" media="(max-width: 640px)">
+  <link rel="preload" as="style" href="./statics/css/style.css">
   
   <!-- Content Formatting for Answer Engines (GEO/AEO) -->
   <meta name="format-detection" content="telephone=no">
@@ -54,11 +59,13 @@
       }
     }
   </script>
+  <!-- Fonts: preconnect early, load with display=swap, and defer non-critical font weights -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@400&display=swap" rel="stylesheet"></noscript>
 </head>
 
 <body>
@@ -106,12 +113,12 @@
   <main class="page-shell">
     <section class="hero-panel" id="home">
       <div class="container">
-        <img src="./statics/assets/horizontal.jpg" alt="Night mountain landscape background" draggable="false" class="base">
+        <img src="./statics/assets/horizontal.webp" alt="Night mountain landscape background" draggable="false" class="base" fetchpriority="high">
         <div class="hero-sun" aria-hidden="true">
           <span class="hero-sun__core"></span>
         </div>
         <div class="space-layer" aria-hidden="true"></div>
-        <img src="./statics/assets/foreground.png" alt="Mountain foreground" draggable="false" class="foreground-layer">
+        <img src="./statics/assets/foreground.webp" alt="Mountain foreground" draggable="false" class="foreground-layer">
 
         <div class="hero-copy">
           <p class="hero-eyebrow">Curated journeys through Himachal and Uttarakhand</p>
@@ -224,7 +231,7 @@
       <div class="founder-container">
         <div class="founder-image-col">
           <div class="founder-image-wrapper">
-            <img class="founder-image" src="./statics/assets/founder.png" alt="Shubham Bisht in the mountains" loading="lazy">
+            <img class="founder-image" src="./statics/assets/founder.webp" alt="Shubham Bisht in the mountains" loading="lazy">
           </div>
           <div class="founder-badge">
             <h4>Shubham Bisht</h4>
@@ -381,8 +388,8 @@ With professional mountaineering training from NIM, Uttarkashi and years of trav
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script type="module" src='./statics/js/script.js'></script>
 </body>
 
