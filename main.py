@@ -17,6 +17,10 @@ mimetypes.add_type("image/svg+xml", ".svg")
 load_dotenv()
 import jwt
 from datetime import datetime, timedelta, timezone
+import cloudinary
+import cloudinary.uploader
+if os.environ.get("CLOUDINARY_URL"):
+    cloudinary.config(url=os.environ.get("CLOUDINARY_URL"))
 
 app = FastAPI()
 
@@ -27,14 +31,9 @@ app.add_middleware(GZipMiddleware, minimum_size=500)
 MONGO_URI = os.environ.get("MONGO_URI")
 if not MONGO_URI:
     raise ValueError("MONGO_URI not found in environment (.env)")
+import certifi
 client = AsyncIOMotorClient(
-    MONGO_URI,
-    maxPoolSize=5,
-    minPoolSize=0,
-    serverSelectionTimeoutMS=15000,
-    connectTimeoutMS=10000,
-    socketTimeoutMS=30000,
-    maxIdleTimeMS=45000,
+    MONGO_URI, tlsCAFile=certifi.where()
 )
 db = client.ghoomne_chalo
 packages_collection = db.packages
@@ -227,6 +226,10 @@ async def admin_add_package(
             elif line.startswith('-') and current_day is not None:
                 current_day["items"].append(line[1:].strip())
 
+    if card_image.startswith("data:image/"):
+        upload_result = cloudinary.uploader.upload(card_image)
+        card_image = upload_result.get("secure_url")
+
     new_package = {
         "package_id": package_id,
         "title": title,
@@ -311,6 +314,10 @@ async def admin_edit_package_post(
                 parsed_itinerary.append(current_day)
             elif line.startswith('-') and current_day is not None:
                 current_day["items"].append(line[1:].strip())
+
+    if card_image and card_image.startswith("data:image/"):
+        upload_result = cloudinary.uploader.upload(card_image)
+        card_image = upload_result.get("secure_url", "")
 
     update_fields = {
         "package_id": package_id,

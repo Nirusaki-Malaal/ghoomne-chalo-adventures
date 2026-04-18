@@ -1,10 +1,4 @@
 @font-face {
-  font-family: "Nistha";
-  src: url("../fonts/nistha.otf") format("opentype");
-  font-display: swap;
-}
-
-@font-face {
   font-family: "Nofex";
   src: url("../fonts/nofex.otf") format("opentype");
   font-display: swap;
@@ -73,6 +67,9 @@ img {
 }
 
 .nav-links {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
   gap: 30px;
   margin: 0;
@@ -417,7 +414,7 @@ img {
 .hero-text {
   margin: 0;
   color: white;
-  font-family: "Nistha", sans-serif;
+  font-family: "Fira Sans", sans-serif;
   font-size: clamp(3.5rem, 7.6vw, 9rem);
   line-height: 0.95;
   text-transform: uppercase;
@@ -484,14 +481,12 @@ img {
   left: 0;
   height: clamp(220px, 30vh, 360px);
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgba(8, 17, 31, 0) 0%,
       rgba(8, 17, 31, 0.22) 22%,
       rgba(7, 15, 27, 0.6) 48%,
       rgba(6, 12, 22, 0.88) 76%,
-      rgba(6, 11, 20, 0.98) 100%
-    );
+      rgba(6, 11, 20, 0.98) 100%);
   pointer-events: none;
 }
 
@@ -521,7 +516,7 @@ img {
 }
 
 .packages-grid::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   border-radius: 10px;
 }
 
@@ -1006,26 +1001,22 @@ body[data-theme="light"] .reviews-section {
 
 body[data-theme="light"] .packages-section::after {
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgba(220, 232, 248, 0) 0%,
       rgba(220, 232, 248, 0.2) 22%,
       rgba(229, 239, 250, 0.58) 48%,
       rgba(234, 242, 252, 0.86) 76%,
-      rgba(237, 244, 253, 0.98) 100%
-    );
+      rgba(237, 244, 253, 0.98) 100%);
 }
 
 body[data-theme="light"] .founder-section::before {
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgba(237, 244, 253, 0.98) 0%,
       rgba(235, 243, 252, 0.9) 22%,
       rgba(232, 240, 251, 0.56) 52%,
       rgba(228, 239, 251, 0.18) 78%,
-      rgba(228, 239, 251, 0) 100%
-    );
+      rgba(228, 239, 251, 0) 100%);
 }
 
 body[data-theme="light"] .contact-section {
@@ -1052,6 +1043,7 @@ body[data-theme="light"] .contact-section::after {
 body[data-theme="light"] .section-title,
 body[data-theme="light"] .founder-title-main,
 body[data-theme="light"] .stat-value,
+body[data-theme="light"] .review-card h3,
 body[data-theme="light"] .contact-card h3,
 body[data-theme="light"] .package-modal__title,
 body[data-theme="light"] .package-modal__section h4,
@@ -1074,8 +1066,7 @@ body[data-theme="light"] .package-card,
 body[data-theme="light"] .review-card,
 body[data-theme="light"] .contact-card,
 body[data-theme="light"] .package-modal__flowstep,
-body[data-theme="light"] .package-modal__section,
-body[data-theme="light"] .founder-badge {
+body[data-theme="light"] .package-modal__section {
   border-color: rgba(93, 122, 167, 0.16);
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.76), rgba(218, 231, 248, 0.72));
   box-shadow:
@@ -1137,8 +1128,7 @@ body[data-theme="light"] .package-price {
 }
 
 body[data-theme="light"] .package-gst,
-body[data-theme="light"] .stat-label,
-body[data-theme="light"] .founder-badge p {
+body[data-theme="light"] .stat-label {
   color: rgba(19, 35, 63, 0.56);
 }
 
@@ -1429,8 +1419,8 @@ body[data-theme="light"] .package-button:hover {
 
 .section-title {
   margin: 0;
-  font-family: "Dehanna", sans-serif;
-  font-size: clamp(2.7rem, 5vw, 5rem);
+  font-family: "Fira Sans", sans-serif;
+  font-size: clamp(2.5rem, 4.0vw, 4.0rem);
   line-height: 0.98;
 }
 
@@ -1470,14 +1460,12 @@ body[data-theme="light"] .package-button:hover {
   left: 0;
   height: clamp(220px, 30vh, 340px);
   background:
-    linear-gradient(
-      to bottom,
+    linear-gradient(to bottom,
       rgba(6, 11, 20, 0.98) 0%,
       rgba(7, 12, 22, 0.9) 22%,
       rgba(7, 12, 22, 0.56) 52%,
       rgba(6, 11, 20, 0.18) 78%,
-      rgba(6, 11, 20, 0) 100%
-    );
+      rgba(6, 11, 20, 0) 100%);
   pointer-events: none;
 }
 
@@ -1530,31 +1518,41 @@ body[data-theme="light"] .package-button:hover {
 
 .founder-badge {
   position: absolute;
-  right: clamp(18px, 3vw, 34px);
-  bottom: clamp(18px, 3vw, 34px);
-  background: rgba(26, 30, 36, 0.92);
+  right: -32px;
+  bottom: 40px;
+  background: #ffffff;
   padding: 24px 32px;
-  border-radius: 16px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
+  border-radius: 0;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.15);
+  border: none;
+  backdrop-filter: none;
+  z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .founder-badge {
+    right: 16px;
+    bottom: 24px;
+    padding: 20px 24px;
+  }
 }
 
 .founder-badge h4 {
   margin: 0 0 6px;
-  color: white;
+  color: #111111;
   font-family: "Fira Sans", sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
 .founder-badge p {
   margin: 0;
-  color: #8892b0;
+  color: #888888;
   font-family: "Fira Sans", sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  font-weight: 600;
 }
 
 .founder-content-col {
@@ -2421,10 +2419,10 @@ body[data-theme="light"] .package-button:hover {
   }
 
   .founder-badge {
-    left: 16px;
-    right: 16px;
-    bottom: 16px;
-    padding: 18px 20px;
+    left: auto;
+    right: 8px;
+    bottom: -16px;
+    padding: 16px 20px;
   }
 
   .founder-title-main {

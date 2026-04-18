@@ -753,6 +753,8 @@
   }
 
   .nav-links {
+    position: static;
+    transform: none;
     order: 3;
     width: 100%;
     display: none;

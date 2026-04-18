@@ -9,7 +9,7 @@ const HERO_ART = {
     mobile: "./statics/assets/vertical_foreground.webp",
   },
   light: {
-    desktop: "./statics/assets/horizontal_light.webp",
+    desktop: "./statics/assets/horizontal_light.png",
     mobile: "./statics/assets/vertical_foreground_light.webp",
   },
 };
@@ -403,15 +403,16 @@ function setupSpaceScene(spaceLayer, prefersReducedMotion) {
   scene.add(nebula);
 
   const sizeScene = () => {
-    const { clientWidth, clientHeight } = spaceLayer;
+    const width = Math.floor(spaceLayer.clientWidth);
+    const height = Math.floor(spaceLayer.clientHeight);
 
-    if (!clientWidth || !clientHeight) {
+    if (!width || !height) {
       return;
     }
 
-    camera.aspect = clientWidth / clientHeight;
+    camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    renderer.setSize(clientWidth, clientHeight, false);
+    renderer.setSize(width, height, false);
   };
 
   sizeScene();
@@ -736,7 +737,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const getCardScrollConfig = () => {
     const viewport = getViewportMetrics();
 
-  if (viewport.isPhone) {
+    if (viewport.isPhone) {
       return {
         revealY: 34,
         revealRotateX: -4,
@@ -1082,7 +1083,7 @@ document.addEventListener("DOMContentLoaded", () => {
         heroEyebrow,
         { autoAlpha: 0, y: 24, filter: "blur(10px)" },
         { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.8 }
-      , 0.3)
+        , 0.3)
       .fromTo(
         heroText,
         { autoAlpha: 0, y: 46, filter: "blur(14px)", letterSpacing: "-0.06em" },
@@ -1135,17 +1136,17 @@ document.addEventListener("DOMContentLoaded", () => {
       scale: () => getHeroScrollConfig().foregroundScale,
       ease: "none",
     }, 0)
-    .to(spaceScene ? spaceScene.starRig.rotation : {}, {
+    .to(spaceScene ? spaceScene.starRig.rotation : { x: 0, z: 0 }, {
       z: () => getHeroScrollConfig().starRigZ,
       x: () => getHeroScrollConfig().starRigX,
       ease: "none",
     }, 0)
-    .to(spaceScene ? spaceScene.moonGroup.position : {}, {
+    .to(spaceScene ? spaceScene.moonGroup.position : { x: 0, y: 0 }, {
       x: () => getHeroScrollConfig().moonX,
       y: () => getHeroScrollConfig().moonY,
       ease: "none",
     }, 0)
-    .to(spaceScene ? spaceScene.moonGroup.scale : {}, {
+    .to(spaceScene ? spaceScene.moonGroup.scale : { x: 1, y: 1, z: 1 }, {
       x: () => getHeroScrollConfig().moonScale,
       y: () => getHeroScrollConfig().moonScale,
       z: () => getHeroScrollConfig().moonScale,
