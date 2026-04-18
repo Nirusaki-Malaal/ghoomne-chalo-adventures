@@ -507,13 +507,11 @@
 
 @media (max-width: 768px) {
   .contact-grid {
-    grid-template-columns: repeat(4, minmax(118px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 8px;
     max-width: none;
-    overflow-x: auto;
-    padding-bottom: 8px;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: visible;
+    padding-bottom: 0;
   }
 
   .contact-grid::-webkit-scrollbar {
@@ -521,8 +519,8 @@
   }
 
   .contact-card {
-    min-width: 118px;
-    padding: 18px 14px;
+    min-width: 0;
+    padding: 16px 8px;
     align-items: center;
     gap: 10px;
     text-align: center;

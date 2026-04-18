@@ -136,9 +136,9 @@ img {
   color: transparent;
   text-decoration: none;
   text-underline-offset: 4px;
-  font-family: "Bitcount Grid Double", sans-serif;
+  font-family: "Fira Sans", sans-serif;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 600;
   background: linear-gradient(to right, white 50%, #9ba5b7 50%);
   background-size: 200% 100%;
   background-position: right;
@@ -1511,15 +1511,14 @@ body[data-theme="light"] .package-button:hover {
   height: 100%;
   min-height: inherit;
   object-fit: cover;
-  border-radius: 20px;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
   display: block;
 }
 
 .founder-badge {
   position: absolute;
-  right: -32px;
-  bottom: 40px;
+  right: -70px;
+  bottom: -20px;
   background: #ffffff;
   padding: 24px 32px;
   border-radius: 0;
@@ -1893,7 +1892,7 @@ body[data-theme="light"] .package-button:hover {
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 24px;
   max-width: 1240px;
   margin: 0 auto;
@@ -1907,13 +1906,11 @@ body[data-theme="light"] .package-button:hover {
 
 @media (max-width: 768px) {
   .contact-grid {
-    grid-template-columns: repeat(4, minmax(118px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 8px;
     max-width: none;
-    overflow-x: auto;
-    padding-bottom: 8px;
-    scroll-snap-type: x proximity;
-    -webkit-overflow-scrolling: touch;
+    overflow-x: visible;
+    padding-bottom: 0;
   }
 
   .contact-grid::-webkit-scrollbar {
@@ -1921,8 +1918,8 @@ body[data-theme="light"] .package-button:hover {
   }
 
   .contact-card {
-    min-width: 118px;
-    padding: 18px 14px;
+    min-width: 0;
+    padding: 16px 8px;
     align-items: center;
     gap: 10px;
     text-align: center;
@@ -2041,6 +2038,118 @@ body[data-theme="light"] .package-button:hover {
 
 .contact-text-mobile {
   display: none;
+}
+
+.address-container {
+  max-width: 1240px;
+  margin: 24px auto 0 auto;
+}
+
+.address-card {
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  padding: 32px;
+  border-radius: 24px;
+  border: 1px solid rgba(188, 213, 255, 0.1);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.03), rgba(0, 0, 0, 0.2));
+  color: inherit;
+  transition: transform 0.3s ease, background 0.3s ease;
+  min-height: 280px;
+}
+
+.address-card:hover {
+  transform: translateY(-4px);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(0, 0, 0, 0.1));
+}
+
+.address-info {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+
+.address-info .contact-icon {
+  flex-shrink: 0;
+}
+
+.address-text h3 {
+  color: white;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 1.35rem;
+  margin: 0 0 12px 0;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.address-text p {
+  margin: 0 0 24px 0;
+  color: #9eb7e1;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.directions-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 12px;
+  background: rgba(116, 160, 255, 0.15);
+  color: white;
+  text-decoration: none;
+  font-family: "Noto Sans", sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+  border: 1px solid rgba(188, 213, 255, 0.14);
+}
+
+.directions-btn:hover {
+  background: rgba(116, 160, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+.map-embed {
+  flex: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  min-height: 250px;
+}
+
+.map-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .address-card {
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+  }
+  
+  .address-info {
+    align-items: center;
+    text-align: center;
+  }
+  
+  .address-text h3 {
+    font-size: 1.2rem;
+  }
+  
+  .address-text p {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+  
+  .map-embed {
+    min-height: 200px;
+    width: 100%;
+  }
 }
 
 @media (max-width: 1080px) {
@@ -2338,7 +2447,7 @@ body[data-theme="light"] .package-button:hover {
   }
 
   .contact-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 8px;
     overflow: visible;
     padding-bottom: 0;
