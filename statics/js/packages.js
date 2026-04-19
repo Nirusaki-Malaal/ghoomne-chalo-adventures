@@ -58,9 +58,9 @@ function initPackages() {
 
   if (themeToggle) {
     // Initial theme setup
-    const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-    const defaultTheme = storedTheme || (prefersLight ? "light" : "dark");
+    const defaultTheme = storedTheme || (prefersDark ? "dark" : "light");
     applyTheme(defaultTheme);
 
     themeToggle.addEventListener("click", toggleTheme);

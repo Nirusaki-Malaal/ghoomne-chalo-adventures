@@ -862,7 +862,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const storedTheme = window.localStorage.getItem(THEME_STORAGE_KEY);
-  applyTheme(storedTheme || "dark", { skipStorage: true });
+  applyTheme(storedTheme || "light", { skipStorage: true });
 
   themeToggle?.addEventListener("click", () => {
     applyTheme(getCurrentTheme() === "light" ? "dark" : "light");

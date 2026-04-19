@@ -32,10 +32,10 @@
   <script>
     (function() {
       const theme = localStorage.getItem('ghoomnechalo-theme');
-      if (theme === 'light' || (!theme && window.matchMedia('(prefers-color-scheme: light)').matches)) {
-        document.body.dataset.theme = 'light';
-      } else {
+      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.body.dataset.theme = 'dark';
+      } else {
+        document.body.dataset.theme = 'light';
       }
     })();
   </script>
