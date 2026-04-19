@@ -450,7 +450,7 @@ img {
   border-radius: 999px;
   background: rgba(8, 16, 30, 0.38);
   color: rgba(255, 255, 255, 0.82);
-  font-family: "Bitcount Grid Double", sans-serif;
+  font-family: "Fira Sans", sans-serif;
   font-size: 12px;
   letter-spacing: 0.24em;
   transform: translateX(-50%);
@@ -1419,7 +1419,7 @@ body[data-theme="light"] .package-button:hover {
 .section-kicker {
   margin: 0 0 14px;
   color: #8ea9d8;
-  font-family: "Bitcount Grid Double", sans-serif;
+  font-family: "Fira Sans", sans-serif;
   font-size: 0.95rem;
   letter-spacing: 0.28em;
 }

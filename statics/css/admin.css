@@ -352,7 +352,7 @@ body[data-theme="light"] .ga-stat-box {
   font-weight: 800;
   margin-bottom: 0.5rem;
   color: var(--text);
-  font-family: 'Bitcount Grid Double', var(--font-primary);
+  font-family: 'Fira Sans', var(--font-primary);
 }
 
 .ga-stat-change {
