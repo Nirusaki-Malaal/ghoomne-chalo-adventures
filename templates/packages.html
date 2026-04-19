@@ -1,57 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Ghoomne Chalo | All Packages</title>
   <meta name="description" content="Explore our extensive inventory of curated travel packages. From zero-trace high altitude treks to peaceful valley homestays in remote villages.">
   <meta name="keywords" content="travel packages, mountain trekking, weekend escapes, himalaya travel, sustainable tourism, valley stays, curated trips">
   <meta name="author" content="Ghoomne Chalo Adventures">
   <meta name="robots" content="index, follow">
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark light">
-  
-  <!-- Favicons -->
+
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/statics/assets/logo.png">
-  
-  <!-- Open Graph & Social Cards -->
   <meta property="og:title" content="Ghoomne Chalo Adventures - Explore Our Curated Trips">
   <meta property="og:description" content="Explore our extensive inventory of curated travel packages. From zero-trace high altitude treks to peaceful valley homestays in remote villages.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ghoomnechalo.com/packages">
   <meta property="og:image" content="https://ghoomnechalo.com/statics/images/card-image.jpg">
   <meta property="og:site_name" content="Ghoomne Chalo Adventures">
-  
-  <!-- Twitter Cards -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Ghoomne Chalo Adventures - All Packages">
   <meta name="twitter:description" content="Explore our extensive inventory of curated travel packages.">
   <meta name="twitter:image" content="https://ghoomnechalo.com/statics/images/card-image.jpg">
-  
   <link rel="canonical" href="https://ghoomnechalo.com/packages">
-  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/style.css'>
-  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/packages.css'>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
+
+  <script src="/statics/js/theme.js"></script>
+  <link rel="stylesheet" href="/statics/css/fonts.css">
+  <link rel="stylesheet" href="/statics/css/style.css">
+  <link rel="stylesheet" href="/statics/css/packages.css">
+  <link rel="stylesheet" href="/statics/css/hardening.css">
 </head>
 <body>
-  <script>
-    (function() {
-      const theme = localStorage.getItem('ghoomnechalo-theme');
-      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.body.dataset.theme = 'dark';
-      } else {
-        document.body.dataset.theme = 'light';
-      }
-    })();
-  </script>
   <nav class="navbar">
     <div class="logo">
-      <img src="/statics/assets/logo.png" alt="Ghoomne Chalo Adventures" style="height: 63px; display: block; padding: 20px 0 10px 0;">
+      <img src="/statics/assets/logo.png" alt="Ghoomne Chalo Adventures" class="nav-logo-img">
     </div>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span></span>
@@ -68,13 +51,13 @@
       <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme">
         <span class="theme-toggle__sun" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
           </svg>
         </span>
         <span class="theme-toggle__moon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none">
-            <path d="M19.2 14.7A8 8 0 1 1 9.3 4.8a6.4 6.4 0 0 0 9.9 9.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M19.2 14.7A8 8 0 1 1 9.3 4.8a6.4 6.4 0 0 0 9.9 9.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
           </svg>
         </span>
       </button>
@@ -83,18 +66,13 @@
   </nav>
 
   <main class="page-shell packages-page-main">
-
-    <!-- MAIN CONTENT -->
     <div class="packages-container">
-      <!-- Editorial Header inspired by inventory_sample.html -->
       <section class="packages-selection-header">
-          <p class="packages-selection-kicker">The Selection</p>
-          <h1 class="packages-selection-title">CURATED<br/>EXPEDITIONS</h1>
+        <p class="packages-selection-kicker">The Selection</p>
+        <h1 class="packages-selection-title">CURATED<br>EXPEDITIONS</h1>
       </section>
 
-      <!-- 2 column grid exactly like inventory_sample.html layout inspiration -->
       <div class="packages-grid-large">
-        
         {% for pkg in packages %}
         <article class="package-card package-card--{{ pkg.package_id }}" data-parallax="0" data-package-id="{{ pkg.package_id }}">
           <div class="package-card__glow"></div>
@@ -113,10 +91,9 @@
           </div>
         </article>
         {% endfor %}
-
       </div>
     </div>
-    
+
     <div class="package-modal" id="package-modal" aria-hidden="true">
       <div class="package-modal__backdrop" data-package-close></div>
       <div class="package-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="package-modal-title">
@@ -174,9 +151,8 @@
         </div>
       </div>
     </div>
-
   </main>
-  
-  <script src='/statics/js/packages.js'></script>
+
+  <script src="/statics/js/packages.js"></script>
 </body>
 </html>

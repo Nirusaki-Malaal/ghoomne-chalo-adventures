@@ -1,47 +1,32 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset='utf-8'>
-  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Ghoomne Chalo | Basecamp Control Panel</title>
   <meta name="robots" content="noindex, nofollow">
-  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Internal travel package management system.">
+  <meta name="color-scheme" content="dark light">
 
-  <!-- Favicons -->
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
   <link rel="apple-touch-icon" href="/statics/assets/logo.png">
-
-  <!-- Open Graph & Social Cards -->
   <meta property="og:title" content="Basecamp Control Panel | Ghoomne Chalo">
   <meta property="og:description" content="Internal travel package management system.">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Ghoomne Chalo Adventures">
   <meta name="twitter:card" content="summary">
-  <meta name="color-scheme" content="dark light">
-  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/style.css'>
-  <link rel='stylesheet' type='text/css' media='screen' href='/statics/css/admin.css'>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Double:wght@100..900&display=swap" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script src="/statics/js/theme.js"></script>
+  <link rel="stylesheet" href="/statics/css/fonts.css">
+  <link rel="stylesheet" href="/statics/css/style.css">
+  <link rel="stylesheet" href="/statics/css/admin.css">
+  <link rel="stylesheet" href="/statics/css/hardening.css">
 </head>
 <body>
-  <script>
-    (function() {
-      const theme = localStorage.getItem('ghoomnechalo-theme');
-      if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.body.dataset.theme = 'dark';
-      } else {
-        document.body.dataset.theme = 'light';
-      }
-    })();
-  </script>
   <nav class="navbar">
     <div class="logo">
-      <img src="/statics/assets/logo.png" alt="Ghoomne Chalo Adventures" style="height: 63px; display: block; padding: 20px 0 10px 0;">
+      <img src="/statics/assets/logo.png" alt="Ghoomne Chalo Adventures" class="nav-logo-img">
     </div>
     <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
       <span></span>
@@ -51,20 +36,25 @@
     <ul class="nav-links" id="nav-links">
       <li><a href="/">HOME</a></li>
       <li><a href="/packages">PACKAGES</a></li>
-      <li><a href="/admin" style="font-weight: bold; color: var(--primary);">ADMIN</a></li>
-      <li><a href="/logout" style="color: #ff6b6b;">LOGOUT</a></li>
+      <li><a href="/admin" class="nav-link--current">ADMIN</a></li>
+      <li>
+        <form method="post" action="/admin/logout" class="admin-logout-form">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button type="submit" class="admin-logout-button nav-link--logout">LOGOUT</button>
+        </form>
+      </li>
     </ul>
     <div class="nav-actions">
       <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch color theme">
         <span class="theme-toggle__sun" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none">
-            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"/>
-            <path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="M12 2.8v2.4M12 18.8v2.4M21.2 12h-2.4M5.2 12H2.8M18.5 5.5l-1.7 1.7M7.2 16.8l-1.7 1.7M18.5 18.5l-1.7-1.7M7.2 7.2 5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
           </svg>
         </span>
         <span class="theme-toggle__moon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none">
-            <path d="M19.2 14.7A8 8 0 1 1 9.3 4.8a6.4 6.4 0 0 0 9.9 9.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M19.2 14.7A8 8 0 1 1 9.3 4.8a6.4 6.4 0 0 0 9.9 9.9Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path>
           </svg>
         </span>
       </button>
@@ -79,24 +69,26 @@
 
   <main class="page-shell admin-page-main">
     <div class="admin-header">
-      <p class="packages-selection-kicker" style="font-family: 'Fira Sans', sans-serif; font-style: italic; font-weight: 300; font-size: 1.75rem; color: #74a0ff; letter-spacing: 1px; margin-bottom: 0.5rem;">Management</p>
-      <h1 class="packages-selection-title" style="font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900;">ADMIN PANEL</h1>
-      
-      <div class="admin-tabs" style="flex-wrap: wrap;">
-        <button class="admin-tab active" onclick="switchTab('manage')">Manage Packages</button>
-        <button class="admin-tab" onclick="switchTab('create')">Create Package</button>
-        <button class="admin-tab" onclick="switchTab('analytics')">Analytics</button>
+      <p class="packages-selection-kicker admin-header-kicker">Management</p>
+      <h1 class="packages-selection-title admin-header-title">ADMIN PANEL</h1>
+      <div class="admin-tabs admin-tab-row">
+        <button class="admin-tab active" type="button" data-admin-tab-target="manage">Manage Packages</button>
+        <button class="admin-tab" type="button" data-admin-tab-target="create">Create Package</button>
+        <button class="admin-tab" type="button" data-admin-tab-target="analytics">Analytics</button>
       </div>
     </div>
 
-     <div class="tab-content glass-panel active" id="tab-manage">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
-        <h2 style="margin: 0; text-transform: uppercase;">Existing Packages</h2>
-        <div class="admin-search-container" style="flex: 1; max-width: 400px; position: relative;">
-          <input type="text" id="adminSearch" placeholder="Search by ID or Title..." style="width: 100%; padding: 0.8rem 1rem 0.8rem 2.5rem; border-radius: 8px; background: rgba(0,0,0,0.15); border: 1px solid rgba(128,128,128,0.3); color: inherit; font-family: inherit;">
-          <svg style="position: absolute; left: 0.8rem; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; opacity: 0.6;" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+    <section class="tab-content glass-panel active" id="tab-manage" data-admin-panel="manage">
+      <div class="admin-toolbar">
+        <h2 class="admin-toolbar__title">Existing Packages</h2>
+        <div class="admin-search-container">
+          <input type="text" id="adminSearch" class="admin-search-input" placeholder="Search by ID or Title...">
+          <svg class="admin-search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
         </div>
       </div>
+
       <div class="table-responsive">
         <table class="admin-table">
           <thead>
@@ -105,27 +97,28 @@
               <th>Title</th>
               <th>Image</th>
               <th>Summary</th>
-              <th style="min-width: 150px;">Actions</th>
+              <th class="admin-table-actions-header">Actions</th>
             </tr>
           </thead>
           <tbody>
             {% for pkg in packages %}
-            <tr>
+            <tr data-package-row data-package-id="{{ pkg.package_id }}" data-package-title="{{ pkg.title }}">
               <td data-label="ID">{{ pkg.package_id }}</td>
               <td data-label="Title">{{ pkg.title }}</td>
               <td data-label="Image">
-                  {% if pkg.card_image %}
-                    <img src="{{ pkg.card_image[1:] if pkg.card_image.startswith('./') else pkg.card_image }}" alt="Image" style="max-width: 50px; border-radius: 4px;" onerror="this.style.display='none'">
-                  {% else %}
-                    No Image
-                  {% endif %}
+                {% if pkg.card_image %}
+                <img src="{{ pkg.card_image }}" alt="{{ pkg.title }} thumbnail" class="admin-thumb js-image-preview">
+                {% else %}
+                No Image
+                {% endif %}
               </td>
               <td data-label="Summary">{{ pkg.summary[:50] }}...</td>
               <td data-label="Actions">
-                <div style="display: flex; gap: 0.5rem; justify-content: flex-start; width: 100%;">
-                  <a href="/admin/edit/{{ pkg.package_id }}" class="admin-btn" style="padding: 0.5rem 0.8rem; text-decoration: none; font-size: 0.9rem; flex: 1; text-align: center;">Edit</a>
-                  <form method="post" action="/admin/delete/{{ pkg.package_id }}" style="margin: 0; flex: 1;" onsubmit="if(!confirm('Are you sure you want to delete this package?')){return false;} document.getElementById('loadingOverlay').classList.add('is-active');">
-                    <button type="submit" class="admin-btn admin-btn-danger" style="padding: 0.5rem 0.8rem; font-size: 0.9rem; width: 100%;">Delete</button>
+                <div class="admin-action-row">
+                  <a href="/admin/edit/{{ pkg.package_id }}" class="admin-btn admin-action-link">Edit</a>
+                  <form method="post" action="/admin/delete/{{ pkg.package_id }}" class="admin-delete-form js-delete-package-form">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <button type="submit" class="admin-btn admin-btn-danger admin-action-button">Delete</button>
                   </form>
                 </div>
               </td>
@@ -134,341 +127,116 @@
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
 
-    <div class="tab-content glass-panel" id="tab-create">
+    <section class="tab-content glass-panel" id="tab-create" data-admin-panel="create">
       <form method="post" action="/admin/add" id="addPackageForm">
-      <h2 style="margin-bottom: 2rem; text-transform: uppercase;">Add New Package</h2>
-      
-      <div class="admin-form-group">
-        <label>ID</label>
-        <input type="text" name="package_id" required placeholder="e.g., andaman_nicobar">
-      </div>
-      <div class="admin-form-group">
-        <label>Title</label>
-        <input type="text" name="title" required placeholder="Andaman Nicobar">
-      </div>
-      <div class="admin-form-group">
-        <label>Price</label>
-        <input type="text" name="price" required placeholder="e.g., ₹14999">
-      </div>
-      <div class="admin-form-group">
-        <label>Badge</label>
-        <input type="text" name="badge" required placeholder="e.g., Popular">
-      </div>
-      <div class="admin-form-group">
-        <label>Eyebrow</label>
-        <input type="text" name="eyebrow" required placeholder="Tropical Island">
-      </div>
-      <div class="admin-form-group">
-        <label>Image Upload</label>
-        <input type="file" id="imageUpload" required accept="image/*">
-        <input type="hidden" name="card_image" id="base64Output">
-      </div>
-      <div class="admin-form-group">
-        <label>Summary</label>
-        <textarea name="summary" rows="3" required placeholder="A beautiful tropical island..."></textarea>
-      </div>
-      
-      <!-- New detailed fields -->
-      <div class="admin-form-group">
-        <label>Itinerary (Day-wise Plan)</label>
-        <textarea name="itinerary" rows="6" placeholder="Day 1: Arrival
-- Check into hotel
-- Rest
-Day 2: Sightseeing
-- Visit museum
-- Boat ride"></textarea>
-        <small style="opacity:0.7">Format: 'Day X: Title' on one line, followed by bullet points starting with '-'</small>
-      </div>
-      <div class="admin-form-group">
-        <label>Inclusions (One per line)</label>
-        <textarea name="inclusions" rows="3" placeholder="- 3 Nights Stay
-- All Meals"></textarea>
-      </div>
-      <div class="admin-form-group">
-        <label>Exclusions (One per line)</label>
-        <textarea name="exclusions" rows="3" placeholder="- Flights
-- Personal Expenses"></textarea>
-      </div>
-      <div class="admin-form-group">
-        <label>Things To Carry (One per line)</label>
-        <textarea name="carry" rows="3" placeholder="- Sunglasses
-- Light Jacket"></textarea>
-      </div>
-      <div class="admin-form-group">
-        <label>Highlights (One per line)</label>
-        <textarea name="highlights" rows="3" placeholder="- Beach walk
-- Local cuisine"></textarea>
-      </div>
-      <div class="admin-form-group">
-        <label>Tags/Facts (Comma separated)</label>
-        <input type="text" name="facts" placeholder="e.g. 5 Days, Adventure, Family">
-      </div>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <h2 class="admin-section-title">Add New Package</h2>
 
-      <button type="submit" class="admin-btn">Add Package</button>
+        <div class="admin-form-group">
+          <label for="package_id">ID</label>
+          <input type="text" id="package_id" name="package_id" required placeholder="e.g., andaman_nicobar" pattern="[a-z0-9_-]{3,64}">
+        </div>
+        <div class="admin-form-group">
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" required placeholder="Andaman Nicobar">
+        </div>
+        <div class="admin-form-group">
+          <label for="price">Price</label>
+          <input type="text" id="price" name="price" required placeholder="e.g., ₹14999">
+        </div>
+        <div class="admin-form-group">
+          <label for="badge">Badge</label>
+          <input type="text" id="badge" name="badge" required placeholder="e.g., Popular">
+        </div>
+        <div class="admin-form-group">
+          <label for="eyebrow">Eyebrow</label>
+          <input type="text" id="eyebrow" name="eyebrow" required placeholder="Tropical Island">
+        </div>
+        <div class="admin-form-group">
+          <label for="imageUpload">Image Upload</label>
+          <input type="file" id="imageUpload" required accept="image/jpeg,image/png,image/webp,image/gif">
+          <input type="hidden" name="card_image" id="base64Output">
+          <small id="imageUploadStatus" class="admin-help-text">Upload a file up to 15 MB. It will upload directly to Cloudinary.</small>
+        </div>
+        <div class="admin-form-group">
+          <label for="summary">Summary</label>
+          <textarea id="summary" name="summary" rows="3" required placeholder="A beautiful tropical island..."></textarea>
+        </div>
+        <div class="admin-form-group">
+          <label for="itinerary">Itinerary (Day-wise Plan)</label>
+          <textarea id="itinerary" name="itinerary" rows="6" placeholder="Day 1: Arrival&#10;- Check into hotel&#10;- Rest&#10;Day 2: Sightseeing&#10;- Visit museum&#10;- Boat ride"></textarea>
+          <small class="admin-help-text">Format: Day X: Title on one line, followed by bullet points starting with -</small>
+        </div>
+        <div class="admin-form-group">
+          <label for="inclusions">Inclusions (One per line)</label>
+          <textarea id="inclusions" name="inclusions" rows="3" placeholder="- 3 Nights Stay&#10;- All Meals"></textarea>
+        </div>
+        <div class="admin-form-group">
+          <label for="exclusions">Exclusions (One per line)</label>
+          <textarea id="exclusions" name="exclusions" rows="3" placeholder="- Flights&#10;- Personal Expenses"></textarea>
+        </div>
+        <div class="admin-form-group">
+          <label for="carry">Things To Carry (One per line)</label>
+          <textarea id="carry" name="carry" rows="3" placeholder="- Sunglasses&#10;- Light Jacket"></textarea>
+        </div>
+        <div class="admin-form-group">
+          <label for="highlights">Highlights (One per line)</label>
+          <textarea id="highlights" name="highlights" rows="3" placeholder="- Beach walk&#10;- Local cuisine"></textarea>
+        </div>
+        <div class="admin-form-group">
+          <label for="facts">Tags/Facts (Comma separated)</label>
+          <input type="text" id="facts" name="facts" placeholder="e.g. 5 Days, Adventure, Family">
+        </div>
+
+        <button type="submit" class="admin-btn">Add Package</button>
       </form>
-    </div>
+    </section>
 
-    <div class="tab-content glass-panel" id="tab-analytics">
-      <h2 style="margin-bottom: 2rem; text-transform: uppercase;">Google Analytics Data</h2>
-      
-      <div id="analytics-embed-section" style="display: none; height: 600px; margin-bottom: 2rem; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
-        <iframe id="analyticsIframe" width="100%" height="100%" frameborder="0" style="border:0" allowfullscreen sandbox="allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+    <section class="tab-content glass-panel" id="tab-analytics" data-admin-panel="analytics">
+      <h2 class="admin-section-title">Analytics</h2>
+      {% if analytics_embed_url %}
+      <div class="analytics-frame-shell">
+        <iframe
+          class="analytics-frame"
+          src="{{ analytics_embed_url }}"
+          title="Looker Studio analytics"
+          loading="lazy"
+          sandbox="allow-scripts allow-popups allow-popups-to-escape-sandbox">
+        </iframe>
       </div>
-
-      <div id="analytics-mock-section">
-        <div class="ga-stats-row">
-          <div class="ga-stat-box">
-            <p class="ga-stat-title">Users</p>
-            <p class="ga-stat-value">14.2K</p>
-            <p class="ga-stat-change positive">+8.4% vs last month</p>
-          </div>
-          <div class="ga-stat-box">
-            <p class="ga-stat-title">Page Views</p>
-            <p class="ga-stat-value">48.7K</p>
-            <p class="ga-stat-change positive">+12.1% vs last month</p>
-          </div>
-          <div class="ga-stat-box">
-            <p class="ga-stat-title">Bounce Rate</p>
-            <p class="ga-stat-value">42.3%</p>
-            <p class="ga-stat-change negative">-1.2% vs last month</p>
-          </div>
-          <div class="ga-stat-box">
-            <p class="ga-stat-title">Avg. Session Duration</p>
-            <p class="ga-stat-value">2m 45s</p>
-            <p class="ga-stat-change positive">+5.0% vs last month</p>
-          </div>
-        </div>
-
-        <div class="analytics-grid">
-          <div class="chart-container">
-            <canvas id="trafficChart"></canvas>
-          </div>
-          <div class="chart-container">
-            <canvas id="sourcesChart"></canvas>
-          </div>
-        </div>
+      {% else %}
+      <div class="analytics-disabled-note">
+        Set <code>LOOKER_STUDIO_EMBED_URL</code> to a valid <code>https://lookerstudio.google.com/...</code> URL to enable the analytics embed.
       </div>
-      
-      <div class="ga-settings" style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1);">
-        <h3>Analytics Integration</h3>
-        <p style="font-size: 0.9rem; margin-bottom: 1rem; opacity: 0.8;">To view live analytics, add your Google Looker Studio embed URL here.</p>
-        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-          <input type="url" id="gaEmbedKey" placeholder="https://lookerstudio.google.com/embed/reporting/..." style="flex:1; min-width: 200px; padding: 0.8rem; border-radius: 8px; background: rgba(0,0,0,0.2); border: 1px solid rgba(128,128,128,0.3); color: inherit;">
-          <button class="admin-btn" style="width: auto; margin: 0; padding: 0.8rem 1.5rem;" onclick="saveAnalyticsKey()">Connect Analytics</button>
-          <button class="admin-btn admin-btn-danger" style="width: auto; margin: 0; padding: 0.8rem 1.5rem; display: none;" id="disconnectGaBtn" onclick="disconnectAnalytics()">Disconnect</button>
+      {% endif %}
+
+      <div class="ga-stats-row">
+        <div class="ga-stat-box">
+          <p class="ga-stat-title">Users</p>
+          <p class="ga-stat-value">14.2K</p>
+          <p class="ga-stat-change positive">+8.4% vs last month</p>
+        </div>
+        <div class="ga-stat-box">
+          <p class="ga-stat-title">Page Views</p>
+          <p class="ga-stat-value">48.7K</p>
+          <p class="ga-stat-change positive">+12.1% vs last month</p>
+        </div>
+        <div class="ga-stat-box">
+          <p class="ga-stat-title">Bounce Rate</p>
+          <p class="ga-stat-value">42.3%</p>
+          <p class="ga-stat-change negative">-1.2% vs last month</p>
+        </div>
+        <div class="ga-stat-box">
+          <p class="ga-stat-title">Avg. Session Duration</p>
+          <p class="ga-stat-value">2m 45s</p>
+          <p class="ga-stat-change positive">+5.0% vs last month</p>
         </div>
       </div>
-
-    </div>
-
+    </section>
   </main>
-  
-  <script src='/statics/js/admin.js'></script>
-  
-  <script>
-    const imageUpload = document.getElementById('imageUpload');
-    const base64Output = document.getElementById('base64Output');
-    const form = document.getElementById('addPackageForm');
-    const loader = document.getElementById('loadingOverlay');
 
-    if (imageUpload) {
-      imageUpload.addEventListener('change', function(e) {
-        const file = e.target.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function(evt) {
-            const img = new Image();
-            img.onload = function() {
-              const canvas = document.createElement('canvas');
-              const MAX_WIDTH = 800;
-              const MAX_HEIGHT = 800;
-              let width = img.width;
-              let height = img.height;
-
-              if (width > height) {
-                if (width > MAX_WIDTH) {
-                  height = Math.round((height * MAX_WIDTH) / width);
-                  width = MAX_WIDTH;
-                }
-              } else {
-                if (height > MAX_HEIGHT) {
-                  width = Math.round((width * MAX_HEIGHT) / height);
-                  height = MAX_HEIGHT;
-                }
-              }
-              canvas.width = width;
-              canvas.height = height;
-              const ctx = canvas.getContext('2d');
-              ctx.drawImage(img, 0, 0, width, height);
-              base64Output.value = canvas.toDataURL(file.type, 0.8);
-            };
-            img.src = evt.target.result;
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    }
-
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        if (imageUpload && imageUpload.files.length > 0 && !base64Output.value) {
-          e.preventDefault();
-          alert('Processing image... please wait a second and try again.');
-          return;
-        }
-        if (loader) {
-            loader.classList.add('is-active');
-        }
-      });
-    }
-
-    // Handle Tab Focus Safely
-    window.switchTab = function(tabId) {
-      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.admin-tab').forEach(el => el.classList.remove('active'));
-      document.getElementById('tab-' + tabId).classList.add('active');
-      if (event && event.currentTarget) {
-          event.currentTarget.classList.add('active');
-      }
-    };
-
-    // Live Package Search Filter
-    const adminSearch = document.getElementById('adminSearch');
-    if (adminSearch) {
-      adminSearch.addEventListener('input', function(e) {
-        const term = e.target.value.toLowerCase();
-        const rows = document.querySelectorAll('#tab-manage tbody tr');
-        
-        rows.forEach(row => {
-          const idCell = row.querySelector('td[data-label="ID"]');
-          const titleCell = row.querySelector('td[data-label="Title"]');
-          if (idCell && titleCell) {
-            const idText = idCell.textContent.toLowerCase();
-            const titleText = titleCell.textContent.toLowerCase();
-            if (idText.includes(term) || titleText.includes(term)) {
-              row.style.display = '';
-            } else {
-              row.style.display = 'none';
-            }
-          }
-        });
-      });
-    }
-
-    // Google Analytics Mock Charts
-    const ctxTraffic = document.getElementById('trafficChart');
-    const ctxSources = document.getElementById('sourcesChart');
-    if (ctxTraffic && window.Chart) {
-      Chart.defaults.color = 'rgba(255, 255, 255, 0.7)';
-      Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.1)';
-      
-      new Chart(ctxTraffic, {
-        type: 'line',
-        data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-          datasets: [
-            {
-              label: 'Page Views',
-              data: [6500, 8400, 7200, 10500, 9800, 12400],
-              borderColor: '#74a0ff',
-              backgroundColor: 'rgba(116, 160, 255, 0.2)',
-              borderWidth: 2,
-              tension: 0.4,
-              fill: true
-            },
-            {
-              label: 'Users',
-              data: [3200, 4100, 3500, 5200, 4800, 6100],
-              borderColor: '#00d2d3',
-              backgroundColor: 'transparent',
-              borderWidth: 2,
-              tension: 0.4,
-              borderDash: [5, 5]
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { labels: { font: { family: 'Noto Sans' } } },
-            title: { display: true, text: 'Sessions & Users Overview', color: '#fff', font: {size: 14} }
-          }
-        }
-      });
-
-      new Chart(ctxSources, {
-        type: 'doughnut',
-        data: {
-          labels: ['Organic Search', 'Direct', 'Social', 'Referral'],
-          datasets: [{
-            data: [55, 25, 15, 5],
-            backgroundColor: [
-              'rgba(116, 160, 255, 0.8)',
-              'rgba(0, 210, 211, 0.8)',
-              'rgba(255, 159, 67, 0.8)',
-              'rgba(255, 107, 107, 0.8)'
-            ],
-            borderWidth: 0,
-            hoverOffset: 4
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { position: 'right', labels: { font: { family: 'Noto Sans' } } },
-            title: { display: true, text: 'Traffic Sources', color: '#fff', font: {size: 14} }
-          }
-        }
-      });
-    }
-
-    // Google Analytics Configuration Logic
-    const analyticsEmbedSection = document.getElementById('analytics-embed-section');
-    const analyticsMockSection = document.getElementById('analytics-mock-section');
-    const analyticsIframe = document.getElementById('analyticsIframe');
-    const gaEmbedKeyInput = document.getElementById('gaEmbedKey');
-    const disconnectGaBtn = document.getElementById('disconnectGaBtn');
-
-    function checkAnalyticsConfig() {
-      const savedKey = localStorage.getItem('ghoomneAnalyticsKey');
-      if (savedKey && savedKey.startsWith('http')) {
-        analyticsEmbedSection.style.display = 'block';
-        analyticsMockSection.style.display = 'none';
-        analyticsIframe.src = savedKey;
-        gaEmbedKeyInput.value = savedKey;
-        disconnectGaBtn.style.display = 'block';
-      } else {
-        analyticsEmbedSection.style.display = 'none';
-        analyticsMockSection.style.display = 'block';
-        analyticsIframe.src = '';
-        disconnectGaBtn.style.display = 'none';
-      }
-    }
-
-    window.saveAnalyticsKey = function() {
-      const val = gaEmbedKeyInput.value.trim();
-      if (!val) return;
-      if (!val.startsWith('http')) {
-        alert('Please provide a valid embed URL starting with http:// or https://');
-        return;
-      }
-      localStorage.setItem('ghoomneAnalyticsKey', val);
-      checkAnalyticsConfig();
-    };
-
-    window.disconnectAnalytics = function() {
-      localStorage.removeItem('ghoomneAnalyticsKey');
-      gaEmbedKeyInput.value = '';
-      checkAnalyticsConfig();
-    };
-
-    // Initialize state
-    checkAnalyticsConfig();
-
-  </script>
+  <script src="/statics/js/admin.js"></script>
 </body>
 </html>

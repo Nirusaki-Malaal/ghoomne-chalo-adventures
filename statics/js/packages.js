@@ -1,6 +1,74 @@
 const THEME_STORAGE_KEY = "ghoomnechalo-theme";
 let PACKAGE_DETAILS = {};
 
+function clearChildren(target) {
+  while (target?.firstChild) {
+    target.removeChild(target.firstChild);
+  }
+}
+
+function appendTextList(target, items) {
+  if (!target) {
+    return;
+  }
+
+  clearChildren(target);
+  items.forEach((item) => {
+    const listItem = document.createElement("li");
+    listItem.textContent = item;
+    target.appendChild(listItem);
+  });
+}
+
+function appendFactBadges(target, items) {
+  if (!target) {
+    return;
+  }
+
+  clearChildren(target);
+  items.forEach((item) => {
+    const badge = document.createElement("span");
+    badge.className = "package-modal__fact";
+    badge.textContent = item;
+    target.appendChild(badge);
+  });
+}
+
+function appendFlowSteps(target, steps) {
+  if (!target) {
+    return;
+  }
+
+  clearChildren(target);
+  steps.forEach((day) => {
+    const wrapper = document.createElement("div");
+    wrapper.className = "package-modal__flowstep";
+
+    const dayLabel = document.createElement("div");
+    dayLabel.className = "package-modal__flowday";
+    dayLabel.textContent = day.day || "";
+
+    const info = document.createElement("div");
+    info.className = "package-modal__flowinfo";
+
+    const title = document.createElement("h5");
+    title.className = "package-modal__flowtitle";
+    title.textContent = day.title || "";
+
+    const list = document.createElement("ul");
+    list.className = "package-modal__flowlist";
+    (day.items || []).forEach((item) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      list.appendChild(listItem);
+    });
+
+    info.append(title, list);
+    wrapper.append(dayLabel, info);
+    target.appendChild(wrapper);
+  });
+}
+
 async function fetchPackages() {
   try {
     const res = await fetch("/api/packages");
@@ -90,8 +158,6 @@ function initPackages() {
 
   const WHATSAPP_NUMBER = "919536309897";
 
-  const buildList = (items) => items.map((item) => `<li>${item}</li>`).join("");
-
   const openModal = (packageId) => {
     const details = PACKAGE_DETAILS[packageId];
     if (!details || !packageModal) return;
@@ -103,32 +169,12 @@ function initPackages() {
       els.image.src = details.image;
       els.image.alt = `${details.title} cover image`;
     }
-    if (els.facts) {
-      els.facts.innerHTML = (details.facts || [])
-        .map((fact) => `<span class="package-modal__fact">${fact}</span>`)
-        .join("");
-    }
-    if (els.flow) {
-      els.flow.innerHTML = (details.itinerary || [])
-        .map(
-          (day) => `
-        <div class="package-modal__flowstep">
-          <div class="package-modal__flowday">${day.day}</div>
-          <div class="package-modal__flowinfo">
-            <h5 class="package-modal__flowtitle">${day.title}</h5>
-            <ul class="package-modal__flowlist">
-              ${buildList(day.items || [])}
-            </ul>
-          </div>
-        </div>
-      `
-        )
-        .join("");
-    }
-    if (els.highlights) els.highlights.innerHTML = buildList(details.highlights || []);
-    if (els.inclusions) els.inclusions.innerHTML = buildList(details.inclusions || []);
-    if (els.exclusions) els.exclusions.innerHTML = buildList(details.exclusions || []);
-    if (els.carry) els.carry.innerHTML = buildList(details.carry || []);
+    appendFactBadges(els.facts, details.facts || []);
+    appendFlowSteps(els.flow, details.itinerary || []);
+    appendTextList(els.highlights, details.highlights || []);
+    appendTextList(els.inclusions, details.inclusions || []);
+    appendTextList(els.exclusions, details.exclusions || []);
+    appendTextList(els.carry, details.carry || []);
     
     if (els.book) {
       const msg = encodeURIComponent(`Hi, I'm interested in the ${details.title} package.`);

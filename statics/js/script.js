@@ -1,5 +1,6 @@
 // Three.js is lazy-loaded below when needed
 let THREE = null;
+const THREE_MODULE_PATH = "/statics/vendor/three.module.js";
 
 const WHATSAPP_NUMBER = "919536309897";
 const THEME_STORAGE_KEY = "ghoomnechalo-theme";
@@ -544,9 +545,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const heroPanel = document.querySelector(".hero-panel");
   const heroCopy = document.querySelector(".hero-copy");
-  const heroEyebrow = document.querySelector(".hero-eyebrow");
   const heroText = document.querySelector(".hero-text");
-  const heroSubtext = document.querySelector(".hero-subtext");
   const heroBase = document.querySelector(".base");
   const heroSun = document.querySelector(".hero-sun");
   const foreground = document.querySelector(".foreground-layer");
@@ -575,7 +574,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const packageTabs = document.querySelectorAll("[data-package-tab]");
   const packagePanels = document.querySelectorAll("[data-package-panel]");
   const packageCloseTriggers = document.querySelectorAll("[data-package-close]");
-  const photoCards = gsapInstance.utils.toArray(".photo-card");
   let spaceScene = null;
   let heroScrollTimeline = null;
 
@@ -766,32 +764,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
   };
 
-  const getPhotoCardScrollConfig = () => {
-    const viewport = getViewportMetrics();
-
-    if (viewport.isPhone) {
-      return {
-        revealY: 30,
-        revealRotateX: -3,
-        revealStart: "top 94%",
-      };
-    }
-
-    if (viewport.isTablet) {
-      return {
-        revealY: 42,
-        revealRotateX: -6,
-        revealStart: "top 88%",
-      };
-    }
-
-    return {
-      revealY: 56,
-      revealRotateX: -8,
-      revealStart: "top 82%",
-    };
-  };
-
   const syncResponsiveHeroState = () => {
     const heroScrollConfig = getHeroScrollConfig();
 
@@ -918,12 +890,23 @@ document.addEventListener("DOMContentLoaded", () => {
     lastScrollY = currentScrollY;
   });
 
+  const clearChildren = (target) => {
+    while (target?.firstChild) {
+      target.removeChild(target.firstChild);
+    }
+  };
+
   const renderPackageList = (target, items) => {
     if (!target) {
       return;
     }
 
-    target.innerHTML = items.map((item) => `<li>${item}</li>`).join("");
+    clearChildren(target);
+    items.forEach((item) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = item;
+      target.appendChild(listItem);
+    });
   };
 
   const renderPackageFlow = (target, steps) => {
@@ -931,19 +914,30 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    target.innerHTML = steps
-      .map(
-        (step) => `
-          <article class="package-modal__flowstep">
-            <p class="package-modal__flowday">${step.day}</p>
-            <h4 class="package-modal__flowtitle">${step.title}</h4>
-            <ul class="package-modal__flowlist">
-              ${step.items.map((item) => `<li>${item}</li>`).join("")}
-            </ul>
-          </article>
-        `
-      )
-      .join("");
+    clearChildren(target);
+    steps.forEach((step) => {
+      const article = document.createElement("article");
+      article.className = "package-modal__flowstep";
+
+      const day = document.createElement("p");
+      day.className = "package-modal__flowday";
+      day.textContent = step.day || "";
+
+      const title = document.createElement("h4");
+      title.className = "package-modal__flowtitle";
+      title.textContent = step.title || "";
+
+      const list = document.createElement("ul");
+      list.className = "package-modal__flowlist";
+      (step.items || []).forEach((item) => {
+        const listItem = document.createElement("li");
+        listItem.textContent = item;
+        list.appendChild(listItem);
+      });
+
+      article.append(day, title, list);
+      target.appendChild(article);
+    });
   };
 
   const setActivePackageTab = (tabName) => {
@@ -992,7 +986,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     if (packageModalFacts) {
-      packageModalFacts.innerHTML = details.facts.map((fact) => `<span>${fact}</span>`).join("");
+      clearChildren(packageModalFacts);
+      details.facts.forEach((fact) => {
+        const badge = document.createElement("span");
+        badge.textContent = fact;
+        packageModalFacts.appendChild(badge);
+      });
     }
 
     if (packageModalBook) {
@@ -1050,7 +1049,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const initSpaceScene = async () => {
     if (THREE) return; // already loaded
     try {
-      THREE = await import("three");
+      THREE = await import(THREE_MODULE_PATH);
       spaceScene = setupSpaceScene(spaceLayer, prefersReducedMotion);
       updateSpaceTheme();
     } catch (err) {
@@ -1097,30 +1096,19 @@ document.addEventListener("DOMContentLoaded", () => {
         0.05
       )
       .fromTo(
-        heroEyebrow,
-        { autoAlpha: 0, y: 24, filter: "blur(10px)" },
-        { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.8 }
-        , 0.3)
-      .fromTo(
         heroText,
         { autoAlpha: 0, y: 46, filter: "blur(14px)", letterSpacing: "-0.06em" },
         { autoAlpha: 1, y: 0, filter: "blur(0px)", letterSpacing: "0em", duration: 1.2 },
-        "-=0.35"
-      )
-      .fromTo(
-        heroSubtext,
-        { autoAlpha: 0, y: 22, filter: "blur(10px)" },
-        { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.9 },
-        "-=0.7"
+        0.3
       )
       .fromTo(
         scrollCue,
         { autoAlpha: 0, y: 16 },
         { autoAlpha: 1, y: 0, duration: 0.8 },
-        "-=0.45"
+        "-=0.3"
       );
   } else {
-    gsapInstance.set([heroEyebrow, heroText, heroSubtext, scrollCue], {
+    gsapInstance.set([heroText, scrollCue], {
       autoAlpha: 1,
       clearProps: "all",
     });
@@ -1337,30 +1325,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    photoCards.forEach((card, index) => {
-      gsapInstance.fromTo(
-        card,
-        {
-          autoAlpha: 0,
-          y: () => getPhotoCardScrollConfig().revealY,
-          rotateX: () => getPhotoCardScrollConfig().revealRotateX,
-        },
-        {
-          autoAlpha: 1,
-          y: 0,
-          rotateX: 0,
-          duration: 1,
-          delay: index * 0.08,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: card,
-            start: () => getPhotoCardScrollConfig().revealStart,
-            once: true,
-            invalidateOnRefresh: true,
-          },
-        }
-      );
-    });
   }
 
   window.addEventListener("beforeunload", () => {

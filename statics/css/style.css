@@ -406,18 +406,6 @@ img {
   pointer-events: none;
 }
 
-.hero-eyebrow {
-  margin: 0 0 16px;
-  color: var(--ink-soft);
-  font-family: "Fira Sans", sans-serif;
-  font-size: clamp(0.95rem, 1.4vw, 1.25rem);
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  line-height: 1.45;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
 .hero-text {
   margin: 0;
   color: white;
@@ -426,18 +414,6 @@ img {
   line-height: 0.95;
   text-transform: uppercase;
   text-shadow: 0 14px 45px rgba(0, 0, 0, 0.46);
-}
-
-.hero-subtext {
-  width: min(70ch, 85%);
-  margin: 20px auto 0;
-  color: var(--ink-soft);
-  font-family: "Fira Sans", sans-serif;
-  font-size: clamp(1rem, 1.55vw, 1.3rem);
-  line-height: 1.55;
-  letter-spacing: 0.04em;
-  overflow-wrap: anywhere;
-  word-break: break-word;
 }
 
 .scroll-cue {
@@ -962,8 +938,6 @@ body[data-theme="light"] .hero-sun {
   transform: translate3d(0, 0, 0) scale(1);
 }
 
-body[data-theme="light"] .hero-eyebrow,
-body[data-theme="light"] .hero-subtext,
 body[data-theme="light"] .scroll-cue {
   color: rgba(93, 122, 167, 0.96);
   text-shadow: none;
@@ -2226,10 +2200,6 @@ body[data-theme="light"] .package-button:hover {
     font-size: clamp(2.8rem, 12vw, 5rem);
   }
 
-  .hero-subtext {
-    width: min(90%, 38ch);
-  }
-
   .foreground-layer {
     width: min(172vw, 1600px);
   }
@@ -2356,19 +2326,8 @@ body[data-theme="light"] .package-button:hover {
 }
 
 @media (max-width: 640px) {
-  .hero-eyebrow {
-    margin-bottom: 12px;
-    letter-spacing: 0.16em;
-  }
-
   .hero-text {
     font-size: clamp(2.4rem, 14vw, 4rem);
-  }
-
-  .hero-subtext {
-    margin-top: 14px;
-    font-size: 0.98rem;
-    line-height: 1.5;
   }
 
   .foreground-layer {
@@ -2738,35 +2697,9 @@ body[data-theme="light"] .package-button:hover {
     width: min(82vw, 760px);
   }
 
-  .hero-eyebrow {
-    margin-bottom: 8px;
-    font-size: clamp(0.78rem, 1.05vw, 0.94rem);
-    letter-spacing: 0.14em;
-  }
-
   .hero-text {
     font-size: clamp(2.7rem, 17vh, 4.8rem);
     line-height: 0.9;
-  }
-
-  .hero-subtext {
-    width: min(78vw, 34ch);
-    margin-top: 10px;
-    padding: 6px 14px;
-    border-radius: 999px;
-    background: rgba(7, 15, 28, 0.26);
-    color: rgba(241, 246, 255, 0.94);
-    font-size: 0.92rem;
-    line-height: 1.35;
-    text-shadow: 0 8px 18px rgba(0, 0, 0, 0.34);
-    backdrop-filter: blur(10px);
-  }
-
-  body[data-theme="light"] .hero-subtext {
-    color: rgba(22, 40, 69, 0.96);
-    background: rgba(255, 255, 255, 0.42);
-    text-shadow: none;
-    box-shadow: 0 10px 26px rgba(117, 145, 187, 0.12);
   }
 
   .scroll-cue {
