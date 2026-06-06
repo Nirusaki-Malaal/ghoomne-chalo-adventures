@@ -55,9 +55,6 @@ def parse_allowed_hosts(raw_value: str | None) -> list[str]:
         if parsed:
             return parsed
     return [
-        "ghoomnechalo.com",
-        "www.ghoomnechalo.com",
-        "*.ghoomnechalo.com",
         "ghoomnechaloadventures.com",
         "www.ghoomnechaloadventures.com",
         "*.ghoomnechaloadventures.com",
